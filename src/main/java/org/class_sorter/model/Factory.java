@@ -21,12 +21,12 @@ public class Factory {
             String canShootString = sc.next();
             boolean canShoot = canShootString.equals("True") || canShootString.equals("true") || canShootString.equals("TRUE");
             List<String> prefs = new ArrayList<>();
+            /*prefs.add(sc.next());
             prefs.add(sc.next());
             prefs.add(sc.next());
             prefs.add(sc.next());
             prefs.add(sc.next());
-            prefs.add(sc.next());
-            prefs.add(sc.next());
+            prefs.add(sc.next());*/
             campers.add(new CamperImpl(firstName, lastName, ageGroup, cabin, canShoot, prefs));
         }
         return campers;

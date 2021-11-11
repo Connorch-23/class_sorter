@@ -24,6 +24,11 @@ public interface Class_ {
     boolean getRequiresShootingForm();
 
     /**
+     * returns a list of campers that have this class as their first preference
+     */
+    List<Camper> getFirstPrefs();
+
+    /**
      * changes whether or not a shooting form is required
      */
     void changeShootingForm(boolean v);

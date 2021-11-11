@@ -58,10 +58,39 @@ public class ModelImpl implements Model {
     }
 
     @Override
+    public void setFirstPrefs(List<Class_> classes, List<Camper> campers) {
+        for (Class_ cl : classes) {
+            for (Camper c : campers) {
+                if (c.getPrefs().get(0).equals(cl.getName())) {
+                    cl.getFirstPrefs().add(c);
+                }
+            }
+        }
+    }
+
+    @Override
     public void sortCampers() {
         ArrayList<Camper> rawCampers = (ArrayList<Camper>) campers.clone();
         ArrayList<Class_> availableClasses = (ArrayList<Class_>) classes.clone();
-        int counter = 0;
+
+        for (int i = 0; i < 4; i++) {
+            setFirstPrefs(availableClasses, rawCampers);
+
+            for (Class_ cl : availableClasses) {
+                while (cl.getFirstPrefs().size() != 0) {
+                    int indicator = cl.enrollCamper(cl.getFirstPrefs().get(0));
+                    if (indicator == 5) {
+                        cl.getFirstPrefs().get(0).getPrefs().remove(0);
+                    }
+                    cl.getFirstPrefs().get(0).getPrefs().remove(0);
+                    cl.getFirstPrefs().remove(0);
+                }
+            }
+        }
+
+        /*
+            int counter = 0;
+
         while (rawCampers.size() != 0 || availableClasses.size() != 0 || counter != 500) {
             if (counter == 499) {
                 int hello = 0;
@@ -100,7 +129,7 @@ public class ModelImpl implements Model {
             counter++;
         }
 
-
+*/
 
 
 

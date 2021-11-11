@@ -34,6 +34,11 @@ public interface Model {
     void removeObserver(ModelObserver observer);
 
     /**
+     * creates a list of campers who have a specific class as their top rehearsal
+     */
+    void setFirstPrefs(List<Class_> classes, List<Camper> campers);
+
+    /**
      * sorts campers into classes based on prefs
      */
     void sortCampers();

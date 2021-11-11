@@ -10,6 +10,7 @@ public class ClassImpl implements Class_ {
     private List<Camper> enrolled_B;
     private List<Camper> enrolled_C;
     private List<Camper> enrolled_D;
+    private List<Camper> firstPrefs;
     private boolean requiresShootingForm;
 
     public ClassImpl(String name, int capacity, boolean requiresShootingForm) {
@@ -25,6 +26,7 @@ public class ClassImpl implements Class_ {
         enrolled_B = new ArrayList<>();
         enrolled_C = new ArrayList<>();
         enrolled_D = new ArrayList<>();
+        firstPrefs = new ArrayList<>();
         this.requiresShootingForm = requiresShootingForm;
     }
 
@@ -58,6 +60,11 @@ public class ClassImpl implements Class_ {
     @Override
     public boolean getRequiresShootingForm() {
         return requiresShootingForm;
+    }
+
+    @Override
+    public List getFirstPrefs() {
+        return firstPrefs;
     }
 
     @Override
