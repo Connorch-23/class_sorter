@@ -11,7 +11,7 @@ public interface Class_ {
     /**
      * returns the maximum amount of campers that can get into the class
      */
-    int getCapacity();
+    int getCapacity(int class_section);
 
     /**
      * returns the number of campers already enrolled in a class

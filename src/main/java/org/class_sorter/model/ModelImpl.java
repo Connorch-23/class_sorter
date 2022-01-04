@@ -73,18 +73,32 @@ public class ModelImpl implements Model {
         ArrayList<Camper> rawCampers = (ArrayList<Camper>) campers.clone();
         ArrayList<Class_> availableClasses = (ArrayList<Class_>) classes.clone();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 10; i++) {
+            /*for (Camper c : rawCampers) {
+                for (String pref : c.getPrefs()) {
+                    boolean flag = false;
+                    for (Class_ class_ : availableClasses) {
+                        if (class_.getName().equals(pref)) {
+                            flag = true;
+                        }
+                    }
+                    if (!flag) {
+                        c.getPrefs().remove(pref);
+                    }
+                }
+                c.cleanPrefs(availableClasses);
+            }*/
             setFirstPrefs(availableClasses, rawCampers);
 
             for (Class_ cl : availableClasses) {
                 while (cl.getFirstPrefs().size() != 0) {
                     int indicator = cl.enrollCamper(cl.getFirstPrefs().get(0));
-                    if (indicator == 5) {
-                        cl.getFirstPrefs().get(0).getPrefs().remove(0);
-                    }
                     cl.getFirstPrefs().get(0).getPrefs().remove(0);
                     cl.getFirstPrefs().remove(0);
                 }
+            }
+            for (Camper c : rawCampers) {
+                c.cleanPrefs(availableClasses);
             }
         }
 
@@ -209,5 +223,8 @@ public class ModelImpl implements Model {
             }
         }
     */
+        for (ModelObserver o : observers) {
+            o.update(this);
+        }
     }
 }

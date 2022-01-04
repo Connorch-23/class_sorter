@@ -5,23 +5,26 @@ import java.util.List;
 
 public class ClassImpl implements Class_ {
     private final String name;
-    private int capacity;
-    private List<Camper> enrolled_A;
-    private List<Camper> enrolled_B;
-    private List<Camper> enrolled_C;
-    private List<Camper> enrolled_D;
+    private final int A_capacity;
+    private final int B_capacity;
+    private final int C_capacity;
+    private final int D_capacity;
+    private final List<Camper> enrolled_A;
+    private final List<Camper> enrolled_B;
+    private final List<Camper> enrolled_C;
+    private final List<Camper> enrolled_D;
     private List<Camper> firstPrefs;
     private boolean requiresShootingForm;
 
-    public ClassImpl(String name, int capacity, boolean requiresShootingForm) {
+    public ClassImpl(String name, int A_capacity, int B_capacity, int C_capacity, int D_capacity, boolean requiresShootingForm) {
         if (name == null) {
             throw new IllegalArgumentException("Name cannot be null");
         }
-        if (capacity < 1) {
-            throw new IllegalArgumentException("Capacity is too low");
-        }
         this.name = name;
-        this.capacity = capacity;
+        this.A_capacity = A_capacity;
+        this.B_capacity = B_capacity;
+        this.C_capacity = C_capacity;
+        this.D_capacity = D_capacity;
         enrolled_A = new ArrayList<>();
         enrolled_B = new ArrayList<>();
         enrolled_C = new ArrayList<>();
@@ -36,13 +39,25 @@ public class ClassImpl implements Class_ {
     }
 
     @Override
-    public int getCapacity() {
-        return capacity;
+    public int getCapacity(int class_Section) {
+        if (class_Section > 3 || class_Section < 0) {
+            throw new IllegalArgumentException("Class section invalid");
+        }
+        if (class_Section == 0) {
+            return A_capacity;
+        }
+        if (class_Section == 1) {
+            return B_capacity;
+        }
+        if (class_Section == 2) {
+            return C_capacity;
+        }
+        return D_capacity;
     }
 
     @Override
     public int getNumEnrolled(int i) {
-        if (! ( 0 < i && i < 5)) {
+        if (!(0 < i && i < 5)) {
             throw new IllegalArgumentException("Must be 1-4 to align with classes");
         } else {
             if (i == 1) {
@@ -74,8 +89,8 @@ public class ClassImpl implements Class_ {
 
 
     @Override
-    public List<Camper> getCampersEnrolled(int i ) {
-        if (! ( 0 < i && i < 5)) {
+    public List<Camper> getCampersEnrolled(int i) {
+        if (!(0 < i && i < 5)) {
             throw new IllegalArgumentException("Must be 1-4 to align with classes");
         } else {
             if (i == 1) {
@@ -92,42 +107,60 @@ public class ClassImpl implements Class_ {
 
     @Override
     public int enrollCamper(Camper camper) {
-        if (camper == null) {
-            throw new IllegalArgumentException("Camper cannot be null");
-        }
-        if (camper.getClassA() != null && camper.getClassB() != null &&camper.getClassC() != null &&camper.getClassD() != null) {
-            return 0;
-        }
-        if (isFull(1) && isFull(2) && isFull(3) && isFull(4)) {
-            return 5;
-        }
-        if (camper.getClassA() == null && !isFull(1)) {
-            camper.assignClassA(this);
+        for (int i = 0; i < 10; i++) {
+            if (camper == null) {
+                throw new IllegalArgumentException("Camper cannot be null");
+            }
+            if (camper.getClassA() != null && camper.getClassB() != null && camper.getClassC() != null && camper.getClassD() != null) {
+                return 0;
+            }
             if (isFull(1) && isFull(2) && isFull(3) && isFull(4)) {
                 return 5;
             }
-            return 1;
-        } else if (camper.getClassB() == null && !isFull(2)) {
-            camper.assignClassB(this);
-            if (isFull(1) && isFull(2) && isFull(3) && isFull(4)) {
-                return 5;
+            int number = (int) ((Math.random() * 4));
+            if (getRequiresShootingForm()) {
+                if (!camper.getCanShoot()) {
+                    return 7;
+                }
             }
-            return 2;
-        } else if (camper.getClassC() == null && !isFull(3)) {
-            camper.assignClassC(this);
-            if (isFull(1) && isFull(2) && isFull(3) && isFull(4)) {
-                return 5;
+            if (number == 0) {
+                if (camper.getClassA() == null && !isFull(1)) {
+                    camper.assignClassA(this);
+                    if (isFull(1) && isFull(2) && isFull(3) && isFull(4)) {
+                        return 5;
+                    }
+                    return 1;
+                }
             }
-            return 3;
-        } else if (camper.getClassD() == null && !isFull(4)) {
-            camper.assignClassD(this);
-            if (isFull(1) && isFull(2) && isFull(3) && isFull(4)) {
-                return 5;
+            if (number == 1) {
+                if (camper.getClassB() == null && !isFull(2)) {
+                    camper.assignClassB(this);
+                    if (isFull(1) && isFull(2) && isFull(3) && isFull(4)) {
+                        return 5;
+                    }
+                    return 2;
+                }
             }
-            return 4;
-        } else {
-            return 6;
+            if (number == 2) {
+                if (camper.getClassC() == null && !isFull(3)) {
+                    camper.assignClassC(this);
+                    if (isFull(1) && isFull(2) && isFull(3) && isFull(4)) {
+                        return 5;
+                    }
+                    return 3;
+                }
+            }
+            if (number == 3) {
+                if (camper.getClassD() == null && !isFull(4)) {
+                    camper.assignClassD(this);
+                    if (isFull(1) && isFull(2) && isFull(3) && isFull(4)) {
+                        return 5;
+                    }
+                    return 4;
+                }
+            }
         }
+        return 6;
     }
 
     @Override
@@ -169,13 +202,13 @@ public class ClassImpl implements Class_ {
             throw new IllegalArgumentException("Must be 1-4 to align with classes");
         } else {
             if (i == 1) {
-                return capacity <= enrolled_A.size();
+                return A_capacity <= enrolled_A.size();
             } else if (i == 2) {
-                return capacity <= enrolled_B.size();
+                return B_capacity <= enrolled_B.size();
             } else if (i == 3) {
-                return capacity <= enrolled_C.size();
+                return C_capacity <= enrolled_C.size();
             } else {
-                return capacity <= enrolled_D.size();
+                return D_capacity <= enrolled_D.size();
             }
         }
     }

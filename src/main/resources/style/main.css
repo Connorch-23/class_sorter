@@ -1,0 +1,8 @@
+.label {
+    -fx-background-color: #13294B;
+    -fx-text-fill:white;
+    -fx-text-alignment:center;
+    -fx-padding: 1 2 1 2;
+    -fx-font-size: 15px;
+    -fx-font-family:Georgia;
+}

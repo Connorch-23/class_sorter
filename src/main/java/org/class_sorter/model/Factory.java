@@ -16,18 +16,18 @@ public class Factory {
         while (sc.hasNext()) {
             String lastName = sc.next();
             String firstName = sc.next();
-            String ageGroup = sc.next();
+            int age = sc.nextInt();
             String cabin = sc.next();
             String canShootString = sc.next();
             boolean canShoot = canShootString.equals("True") || canShootString.equals("true") || canShootString.equals("TRUE");
             List<String> prefs = new ArrayList<>();
+            prefs.add(sc.next());
+            prefs.add(sc.next());
+            prefs.add(sc.next());
+            prefs.add(sc.next());
             /*prefs.add(sc.next());
-            prefs.add(sc.next());
-            prefs.add(sc.next());
-            prefs.add(sc.next());
-            prefs.add(sc.next());
             prefs.add(sc.next());*/
-            campers.add(new CamperImpl(firstName, lastName, ageGroup, cabin, canShoot, prefs));
+            campers.add(new CamperImpl(firstName, lastName, age, cabin, canShoot, prefs));
         }
         return campers;
     }
@@ -38,11 +38,13 @@ public class Factory {
         sc.useDelimiter(",|\\r\\n");
         while (sc.hasNext()) {
             String name = sc.next();
-            String c = sc.next();
-            int capacity = Integer.parseInt(c);
+            int A_Capacity = sc.nextInt();
+            int B_Capacity = sc.nextInt();
+            int C_Capacity = sc.nextInt();
+            int D_Capacity = sc.nextInt();
             String requiresShootingFormString = sc.next();
             boolean requiresShootingForm = requiresShootingFormString.equals("True") || requiresShootingFormString.equals("true") || requiresShootingFormString.equals("TRUE");
-            classes.add(new ClassImpl(name, capacity, requiresShootingForm));
+            classes.add(new ClassImpl(name, A_Capacity,B_Capacity,C_Capacity,D_Capacity, requiresShootingForm));
         }
         return classes;
     }

@@ -30,6 +30,11 @@
             <artifactId>javafx-graphics</artifactId>
             <version>14</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>14</version>
+        </dependency>
     </dependencies>
 
     <build>

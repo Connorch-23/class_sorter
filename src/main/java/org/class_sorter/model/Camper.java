@@ -14,9 +14,9 @@ public interface Camper {
     String getLastName();
 
     /**
-     *returns age group of the camper
+     *returns age of the camper
      */
-    String getAgeGroup();
+    int getAge();
 
     /**
      * returns the camper's cabin

@@ -42,72 +42,25 @@ public class AppLauncher extends Application {
         Controller controller = new ControllerImpl(model);
 
         View view = new View(controller, model);
-        List<Camper> campersList = model.getCampers();
-        campersList = controller.getSortedCampers();
-        FileWriter writer = new FileWriter("test.csv");
-        writer.append("Last Name");
-        writer.append(",");
-        writer.append("First Name");
-        writer.append(",");
-        writer.append("Cabin");
-        writer.append(",");
-        writer.append("Class A");
-        writer.append(",");
-        writer.append("Class B");
-        writer.append(",");
-        writer.append("Class C");
-        writer.append(",");
-        writer.append("Class D");
-        writer.append("\n");
 
 
-        for (Camper c : campersList) {
-            writer.append(c.getLastName());
-            writer.append(",");
-            writer.append(c.getFirstName());
-            writer.append(",");
-            writer.append(c.getCabin());
-            writer.append(",");
-            String className = "ERROR1";
 
-            if (c.getClassA() != null) {
-                className = c.getClassA().getName();
-            }
-            writer.append(className);
-            writer.append(",");
-            className = "ERROR1";
+         //Code for prompt box asking what new campers file should be
 
-            if (c.getClassB() != null) {
-                className = c.getClassB().getName();
-            }
-            writer.append(className);
-            writer.append(",");
-            className = "ERROR1";
 
-            if (c.getClassC() != null) {
-                className = c.getClassC().getName();
-            }
-            writer.append(className);
-            writer.append(",");
-            className = "ERROR1";
 
-            if (c.getClassD() != null) {
-                className = c.getClassD().getName();
-            }
-            writer.append(className);
-            writer.append("\n");
 
-        }
-        writer.flush();
-        writer.close();
-        Scene scene = new Scene(view.render());
+
+        PromptView promptView = new PromptView(controller,model);
+        Scene scene = new Scene(promptView.render());
         stage.setScene(scene);
         model.addObserver(
                 (Model m) -> {
-                    scene.setRoot(view.render());
+                    scene.setRoot(promptView.render());
                     stage.sizeToScene();
                 });
-        stage.setTitle(selectedFile1.getName());
+        stage.setTitle("Class Sorter");
         stage.show();
+
     }
 }

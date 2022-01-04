@@ -24,17 +24,17 @@ public class AppTest {
     public void instantiateTest() {
 
         List<Class_> classes = new ArrayList<>();
-        Class_ paintball = new ClassImpl("Paintball", 10, true);
-        Class_ horses = new ClassImpl("Horse Back Riding", 15, false);
-        Class_ kayaking = new ClassImpl("Kayaking", 15, false);
-        Class_ drama = new ClassImpl("Drama", 12, false);
-        Class_ rifles = new ClassImpl("Rifles", 12, true);
-        Class_ shotguns = new ClassImpl("FiveStand", 10, true);
-        Class_ photography = new ClassImpl("Photography", 10, false);
-        Class_ climbing = new ClassImpl("Climbing", 15, false);
-        Class_ fishing = new ClassImpl("Fishing", 5, false);
-        Class_ archery = new ClassImpl("Archery", 9, false);
-        Class_ sports = new ClassImpl("Sports", 13, false);
+        Class_ paintball = new ClassImpl("Paintball", 10, 10,10,10,true);
+        Class_ horses = new ClassImpl("Horse Back Riding", 15, 15, 15, 15, false);
+        Class_ kayaking = new ClassImpl("Kayaking", 15, 15, 15, 15, false);
+        Class_ drama = new ClassImpl("Drama", 12, 12, 12, 12, false);
+        Class_ rifles = new ClassImpl("Rifles", 12, 12, 12, 12, true);
+        Class_ shotguns = new ClassImpl("FiveStand", 10, 10, 10, 10, true);
+        Class_ photography = new ClassImpl("Photography", 10, 10, 10, 10, false);
+        Class_ climbing = new ClassImpl("Climbing", 15, 15, 15, 15, false);
+        Class_ fishing = new ClassImpl("Fishing", 5, 5, 5, 5, false);
+        Class_ archery = new ClassImpl("Archery", 9, 9, 9, 9, false);
+        Class_ sports = new ClassImpl("Sports", 13, 13, 13, 13, false);
 
         classes.add(paintball);
         classes.add(horses);
@@ -133,19 +133,19 @@ public class AppTest {
         preferences.add(pref8);
 
 
-        Camper charlie = new CamperImpl("Charlie", "Hunnam", "EX", "4L", true, pref1);
-        Camper Mack = new CamperImpl("Mack", "Johnson", "EX","3L", true, pref3);
-        Camper Lizzie = new CamperImpl("Lizzie", "Harrison", "EX","3", false, pref5);
-        Camper Ellie = new CamperImpl("Ellie", "Counts","EX", "15A", true, pref7);
-        Camper Chase = new CamperImpl("Chase", "Mccrary","EX", "7", false, pref8);
-        Camper Nick = new CamperImpl("Nick", "Budd", "EX", "12", true, pref2);
-        Camper John = new CamperImpl("John", "Brown", "EX", "12", true, pref3);
-        Camper Nathan = new CamperImpl("Nathan", "Peterman", "EX", "12", true, pref4);
-        Camper Marissa = new CamperImpl("Marissa", "Forfar", "EX", "10", true, pref7);
-        Camper Sherry = new CamperImpl("Mark", "Carr", "EX", "14", true, pref5);
-        Camper Carlos = new CamperImpl("Carlos", "Santana", "EX", "9", true, pref3);
-        Camper Haley = new CamperImpl("Haley", "Atwell","EX", "10", true, pref1);
-        Camper Patrick = new CamperImpl("Patrick", "Mahomes", "EX", "12", true, pref6);
+        Camper charlie = new CamperImpl("Charlie", "Hunnam", 12, "4L", true, pref1);
+        Camper Mack = new CamperImpl("Mack", "Johnson", 12,"3L", true, pref3);
+        Camper Lizzie = new CamperImpl("Lizzie", "Harrison", 12,"3", false, pref5);
+        Camper Ellie = new CamperImpl("Ellie", "Counts",12, "15A", true, pref7);
+        Camper Chase = new CamperImpl("Chase", "Mccrary",12, "7", false, pref8);
+        Camper Nick = new CamperImpl("Nick", "Budd", 12, "12", true, pref2);
+        Camper John = new CamperImpl("John", "Brown", 12, "12", true, pref3);
+        Camper Nathan = new CamperImpl("Nathan", "Peterman", 12, "12", true, pref4);
+        Camper Marissa = new CamperImpl("Marissa", "Forfar", 12, "10", true, pref7);
+        Camper Sherry = new CamperImpl("Mark", "Carr", 12, "14", true, pref5);
+        Camper Carlos = new CamperImpl("Carlos", "Santana", 12, "9", true, pref3);
+        Camper Haley = new CamperImpl("Haley", "Atwell",12, "10", true, pref1);
+        Camper Patrick = new CamperImpl("Patrick", "Mahomes", 12, "12", true, pref6);
 
 
     }
@@ -156,7 +156,7 @@ public class AppTest {
         model.createCampers(new File("/Users/connorhitchings/Desktop/Campers-test.csv"));
         for (Camper c : model.getCampers()) {
             System.out.println(c.getFirstName() + " " + c.getLastName());
-            System.out.println(c.getAgeGroup());
+            System.out.println(c.getAge());
             System.out.println(c.getCabin());
             System.out.println(c.getCanShoot());
             for (String s : c.getPrefs()) {
@@ -171,7 +171,7 @@ public class AppTest {
         model.createClasses(new File("/Users/connorhitchings/Desktop/Classes-test.csv"));
         for (Class_ c : model.getClasses()) {
             System.out.println(c.getName());
-            System.out.println(c.getCapacity());
+            System.out.println(c.getCapacity(0));
             System.out.println(c.getRequiresShootingForm());
 
         }

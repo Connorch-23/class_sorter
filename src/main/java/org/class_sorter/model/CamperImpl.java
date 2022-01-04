@@ -6,7 +6,7 @@ import java.util.List;
 public class CamperImpl implements Camper {
     private String firstName;
     private String lastName;
-    private String ageGroup;
+    private int age;
     private String cabin;
     boolean canShoot;
     private List<String> prefs;
@@ -17,13 +17,13 @@ public class CamperImpl implements Camper {
     private Class_ classD;
 
 
-    public CamperImpl(String firstName,String lastName,String ageGroup, String cabin, boolean canShoot, List<String> prefs) {
-        if (firstName == null || lastName == null ||  ageGroup == null || cabin == null) {
+    public CamperImpl(String firstName,String lastName,int age, String cabin, boolean canShoot, List<String> prefs) {
+        if (firstName == null || lastName == null || cabin == null) {
             throw new IllegalArgumentException();
         }
         this.firstName = firstName;
         this.lastName = lastName;
-        this.ageGroup = ageGroup;
+        this.age = age;
         this.cabin = cabin;
         this.canShoot = canShoot;
         if (prefs == null) {
@@ -45,8 +45,8 @@ public class CamperImpl implements Camper {
     }
 
     @Override
-    public String getAgeGroup() {
-        return ageGroup;
+    public int getAge() {
+        return age;
     }
 
     @Override

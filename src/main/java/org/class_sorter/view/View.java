@@ -2,13 +2,20 @@ package org.class_sorter.view;
 
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import org.class_sorter.controller.Controller;
 import org.class_sorter.model.Model;
 import org.class_sorter.model.ModelObserver;
+
+import javax.swing.*;
 
 public class View implements FXComponent, ModelObserver {
     private Controller controller;
@@ -29,17 +36,13 @@ public class View implements FXComponent, ModelObserver {
 
     @Override
     public Parent render() {
-        GridPane grid = new GridPane();
-
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(0, 10, 0, 10));
+        StackPane pane = new StackPane();
 
 
-        for (int i = 0; i < model.getCampers().size(); i++) {
-            Text title = new Text(model.getCampers().get(i).getFirstName() + " " + model.getCampers().get(i).getLastName());
-            grid.add(title,0,i);
-        }
-        return grid;
+        pane.setPadding(new Insets(100, 200, 100, 200));
+
+        return pane;
     }
+
+
 }
