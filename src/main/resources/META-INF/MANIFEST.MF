@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Main-Class: org.class_sorter.Main
+Class-Path: javafx-controls-14.jar javafx-base-14.jar javafx-graphics-14
+ -mac.jar javafx-base-14-mac.jar javafx-controls-14-mac.jar javafx-graph
+ ics-14.jar
+

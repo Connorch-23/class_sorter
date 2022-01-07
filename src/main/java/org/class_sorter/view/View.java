@@ -36,12 +36,16 @@ public class View implements FXComponent, ModelObserver {
 
     @Override
     public Parent render() {
-        StackPane pane = new StackPane();
+        BorderPane layout = new BorderPane();
 
 
-        pane.setPadding(new Insets(100, 200, 100, 200));
+        layout.setPadding(new Insets(100, 200, 100, 200));
 
-        return pane;
+        PromptView prompt = new PromptView(controller);
+
+        layout.setCenter(prompt);
+
+        return layout;
     }
 
 

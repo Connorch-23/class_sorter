@@ -11,17 +11,39 @@ import java.util.List;
 
 public class ControllerImpl implements Controller{
     private Model model;
+    String name;
 
     public ControllerImpl(Model model) {
         if (model == null) {
             throw new IllegalArgumentException();
         }
         this.model = model;
+        name = "Great job! Your csv file is now on your computer.";
     }
 
     @Override
     public List<Camper> getCampers() {
         return model.getCampers();
+    }
+
+    @Override
+    public String getFileName() {
+        return name;
+    }
+
+    @Override
+    public void setFileName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean getIsProgramDone() {
+        return model.getIsProgramDone();
+    }
+
+    @Override
+    public void closeProgram() {
+        model.closeProgram();
     }
 
     @Override
@@ -32,6 +54,11 @@ public class ControllerImpl implements Controller{
     @Override
     public List<Camper> getSortedCampers() {
         return model.getSortedCampers();
+    }
+
+    @Override
+    public boolean getIsSorted() {
+        return model.getIsSorted();
     }
 
     @Override

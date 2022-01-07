@@ -11,12 +11,25 @@ import java.util.List;
 public interface Controller {
     List<Camper> getCampers();
 
+    String getFileName();
+
+    void setFileName(String name);
+
+    boolean getIsProgramDone();
+
+    void closeProgram();
+
     List<Class_> getClasses();
 
     /**
      * retrieves a list of campers that have been sorted into classes. Their classes have been filled 1-4
      **/
     List<Camper> getSortedCampers();
+
+    /**
+     * returns whether or not the list of campers has been sorted yet
+     */
+    boolean getIsSorted();
 
     /**
      * instantiates a list of campers that represent the campers at camp.

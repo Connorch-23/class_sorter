@@ -10,12 +10,14 @@ public class ModelImpl implements Model {
     ArrayList<Class_> classes;
     List<ModelObserver> observers;
     boolean areCampersSorted;
+    boolean isProgramDone;
 
     public ModelImpl() {
         campers = new ArrayList<>();
         classes = new ArrayList<>();
         observers = new ArrayList<>();
         areCampersSorted = false;
+        isProgramDone = false;
     }
 
 
@@ -27,6 +29,19 @@ public class ModelImpl implements Model {
     @Override
     public List<Class_> getClasses() {
         return classes;
+    }
+
+    @Override
+    public boolean getIsProgramDone() {
+        return isProgramDone;
+    }
+
+    @Override
+    public void closeProgram() {
+        isProgramDone = true;
+        for (ModelObserver o : observers) {
+            o.update(this);
+        }
     }
 
     @Override
@@ -69,25 +84,16 @@ public class ModelImpl implements Model {
     }
 
     @Override
+    public boolean getIsSorted() {
+        return areCampersSorted;
+    }
+
+    @Override
     public void sortCampers() {
         ArrayList<Camper> rawCampers = (ArrayList<Camper>) campers.clone();
         ArrayList<Class_> availableClasses = (ArrayList<Class_>) classes.clone();
 
         for (int i = 0; i < 10; i++) {
-            /*for (Camper c : rawCampers) {
-                for (String pref : c.getPrefs()) {
-                    boolean flag = false;
-                    for (Class_ class_ : availableClasses) {
-                        if (class_.getName().equals(pref)) {
-                            flag = true;
-                        }
-                    }
-                    if (!flag) {
-                        c.getPrefs().remove(pref);
-                    }
-                }
-                c.cleanPrefs(availableClasses);
-            }*/
             setFirstPrefs(availableClasses, rawCampers);
 
             for (Class_ cl : availableClasses) {
@@ -101,8 +107,13 @@ public class ModelImpl implements Model {
                 c.cleanPrefs(availableClasses);
             }
         }
-
-        /*
+        areCampersSorted = true;
+        for (ModelObserver o : observers) {
+            o.update(this);
+        }
+    }
+}
+/* *****UNUSED ALTERNATE IMPLEMENTATIONS OF SORTING ALGORITHM*****
             int counter = 0;
 
         while (rawCampers.size() != 0 || availableClasses.size() != 0 || counter != 500) {
@@ -223,8 +234,3 @@ public class ModelImpl implements Model {
             }
         }
     */
-        for (ModelObserver o : observers) {
-            o.update(this);
-        }
-    }
-}

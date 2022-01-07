@@ -45,13 +45,9 @@ public class AppLauncher extends Application {
 
 
 
-         //Code for prompt box asking what new campers file should be
 
 
-
-
-
-        PromptView promptView = new PromptView(controller,model);
+        PromptView promptView = new PromptView(controller);
         Scene scene = new Scene(promptView.render());
         stage.setScene(scene);
         model.addObserver(
@@ -59,8 +55,14 @@ public class AppLauncher extends Application {
                     scene.setRoot(promptView.render());
                     stage.sizeToScene();
                 });
+
         stage.setTitle("Class Sorter");
-        stage.show();
+        if (!controller.getIsProgramDone()) {
+            stage.show();
+        } else {
+            stage.close();
+
+        }
 
     }
 }

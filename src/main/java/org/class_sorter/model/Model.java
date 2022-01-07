@@ -10,6 +10,10 @@ public interface Model {
 
     List<Class_> getClasses();
 
+    boolean getIsProgramDone();
+
+    void closeProgram();
+
     /**
      * retrieves a list of campers that have been sorted into classes. Their classes have been filled 1-4
      **/
@@ -37,6 +41,12 @@ public interface Model {
      * creates a list of campers who have a specific class as their top rehearsal
      */
     void setFirstPrefs(List<Class_> classes, List<Camper> campers);
+
+
+    /**
+     * returns whether or not the campers have been sorted yet.
+     */
+    boolean getIsSorted();
 
     /**
      * sorts campers into classes based on prefs
