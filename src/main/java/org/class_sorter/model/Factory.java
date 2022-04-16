@@ -13,6 +13,13 @@ public class Factory {
         List<Camper> campers = new ArrayList<>();
         Scanner sc = new Scanner(pathname);
         sc.useDelimiter(",|\\r\\n|\\t");
+        // Scans the first row of labels but holds no values
+        for (int i = 0; i < 11; i++) {
+            if (sc.hasNext()) {
+                sc.next();
+            }
+        }
+        // Scans the rest of the campers in
         while (sc.hasNext()) {
             String lastName = sc.next();
             String firstName = sc.next();
@@ -25,8 +32,8 @@ public class Factory {
             prefs.add(sc.next());
             prefs.add(sc.next());
             prefs.add(sc.next());
-            /*prefs.add(sc.next());
-            prefs.add(sc.next());*/
+            prefs.add(sc.next());
+            prefs.add(sc.next());
             campers.add(new CamperImpl(firstName, lastName, age, cabin, canShoot, prefs));
         }
         return campers;
@@ -36,6 +43,11 @@ public class Factory {
         List<Class_> classes = new ArrayList<>();
         Scanner sc = new Scanner(pathname);
         sc.useDelimiter(",|\\r\\n");
+        for (int i = 0; i < 6; i++) {
+            if (sc.hasNext()) {
+                sc.next();
+            }
+        }
         while (sc.hasNext()) {
             String name = sc.next();
             int A_Capacity = sc.nextInt();
