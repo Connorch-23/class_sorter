@@ -17,7 +17,7 @@ The most important part of this setup is formatting your files properly. My prog
 5. I apologize for the aggressiveness of this upcoming text, but it is very important to me :).
 6. **MAKE SURE BOTH THE CLASSES FILE AND THE CAMPER FILES ARE IN .CSV FORMAT. THOUGH THEY MAY SOMETIMES APPEAR AS A NORMAL EXCEL SPREADSHEET, THE DATA IS ACTUALLY IN A COMMA SEPARATED VALUES FORMAT (.CSV) AND THIS SHOULD BE AT THE END OF THE FILE NAMES YOU WILL USE.**
 
-# Step Two: Beginnnig the program
+# Step Two: Beginning the program
 This part is pretty easy if you are on a Microsft machine that runs windows. All you have to do is find the program called class_sorter, and double click on it! 
 If you are on a mac, running this program is a bit more complicated, but can be seen here:https://java.com/en/download/help/java_mac.html
 To be honest, I also encourage googling if that doesn't work. But doing this on a windows based computer is just a lot easier. Let me know if I need to adjust things if the camp is moving to Apple.
