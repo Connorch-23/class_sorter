@@ -78,7 +78,7 @@ public class PromptView extends Node implements FXComponent, ModelObserver {
             nameOfFile.setFont(new Font("Georgia",15));
             nameOfFile.setPadding(new Insets(5));
 
-            Label goFindIt = new Label("You can find it by looking up " + controller.getFileName() + " on your machine!");
+            Label goFindIt = new Label("You can find it by looking up " + controller.getFileName() + " on your machine, or go to the folder where this app is stored.");
             goFindIt.setFont(new Font("Georgia",15));
             goFindIt.setPadding(new Insets(5));
 
@@ -106,7 +106,7 @@ public class PromptView extends Node implements FXComponent, ModelObserver {
                             FileWriter writer = null;
                             try {
                                 String name;
-                                name = fileName.getText();
+                                name = fileName.getText() + ".csv";
                                 controller.setFileName(name);
                                 writer = new FileWriter(name);
                                 List<Camper> campersList;
