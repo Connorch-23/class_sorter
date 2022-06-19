@@ -1,7 +1,7 @@
 # class_sorter
 ## Welcome to Connor's Class Sorter. This program can be used to sort campers into classes at YMCA Camp Hanes. A couple things to check before you use this system.
 
-1. Make sure you have digitized the camper preferences and updated the class files to account for capacity and whether or not a shooting sports form is needed.
+1. Make sure you have digitized the camper preferences and updated the class files to account for capacity and whether or not a shooting sports form is needed (for example see Camper-test and classes-test).
 2. Make sure that you know where these files are at on your computer. With most machines you can simply search the name of the file on the computer in either Finder(for Apple products) or Windows File Explorer (Microsoft products). I recommend organizing these files into a folder in order to better keep track of them later down the line. 
 3. Make sure you have downloaded Java onto you computer. Its super easy and free:https://java.com/en/download/manual.jsp
 
@@ -15,7 +15,7 @@ The most important part of this setup is formatting your files properly. My prog
 3. It is important that each cell for every camper must have some data. **Basically, if you don't have all the information filled out for a camper, dont input them into the dataset quite yet.**
 4. For the Classes file, it is also important that the order of the data from left to right remains the same. Changing whether this order could cause a failure of the program. The data should be in columns that read from left to right:Class Name	CapacityA	CapacityB	CapacityC	CapacityD	WillShoot?.
 5. I apologize for the aggressiveness of this upcoming text, but it is very important to me :).
-6. **MAKE SURE BOTH THE CLASSES FILE AND THE CAMPER FILES ARE IN .CSV FORMAT. THOUGH THEY MAY SOMETIMES APPEAR AS A NORMAL EXCEL SPREADSHEET, THE DATA IS ACTUALLY IN A COMMA SEPARATED VALUES FORMAT (.CSV) AND THIS SHOULD BE AT THE END OF THE FILE NAMES YOU WILL USE.** You can click [here]([url](https://support.microsoft.com/en-us/office/import-or-export-text-txt-or-csv-files-5250ac4c-663c-47ce-937b-339e391393ba)) for instructions to do that.
+6. **MAKE SURE BOTH THE CLASSES FILE AND THE CAMPER FILES ARE IN .CSV FORMAT. THOUGH THEY MAY SOMETIMES APPEAR AS A NORMAL EXCEL SPREADSHEET, THE DATA IS ACTUALLY IN A COMMA SEPARATED VALUES FORMAT (.CSV) AND THIS SHOULD BE AT THE END OF THE FILE NAMES YOU WILL USE.** You can use the link below for instructions on how to do that. https://support.microsoft.com/en-us/office/import-or-export-text-txt-or-csv-files-5250ac4c-663c-47ce-937b-339e391393ba
 
 # Step Two: Beginning the program
 This part is pretty easy if you are on a Microsft machine that runs windows. All you have to do is find the program called class_sorter, and double click on it! 
