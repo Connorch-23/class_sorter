@@ -15,7 +15,7 @@ The most important part of this setup is formatting your files properly. My prog
 3. It is important that each cell for every camper must have some data. **Basically, if you don't have all the information filled out for a camper, dont input them into the dataset quite yet.**
 4. For the Classes file, it is also important that the order of the data from left to right remains the same. Changing whether this order could cause a failure of the program. The data should be in columns that read from left to right:Class Name	CapacityA	CapacityB	CapacityC	CapacityD	WillShoot?.
 5. I apologize for the aggressiveness of this upcoming text, but it is very important to me :).
-6. **MAKE SURE BOTH THE CLASSES FILE AND THE CAMPER FILES ARE IN .CSV FORMAT. THOUGH THEY MAY SOMETIMES APPEAR AS A NORMAL EXCEL SPREADSHEET, THE DATA IS ACTUALLY IN A COMMA SEPARATED VALUES FORMAT (.CSV) AND THIS SHOULD BE AT THE END OF THE FILE NAMES YOU WILL USE.**
+6. **MAKE SURE BOTH THE CLASSES FILE AND THE CAMPER FILES ARE IN .CSV FORMAT. THOUGH THEY MAY SOMETIMES APPEAR AS A NORMAL EXCEL SPREADSHEET, THE DATA IS ACTUALLY IN A COMMA SEPARATED VALUES FORMAT (.CSV) AND THIS SHOULD BE AT THE END OF THE FILE NAMES YOU WILL USE.** You can click [here]([url](https://support.microsoft.com/en-us/office/import-or-export-text-txt-or-csv-files-5250ac4c-663c-47ce-937b-339e391393ba)) for instructions to do that.
 
 # Step Two: Beginning the program
 This part is pretty easy if you are on a Microsft machine that runs windows. All you have to do is find the program called class_sorter, and double click on it! 
