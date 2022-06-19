@@ -23,3 +23,5 @@ If you are on a mac, running this program is a bit more complicated, but can be 
 To be honest, I also encourage googling if that doesn't work. But doing this on a windows based computer is just a lot easier. Let me know if I need to adjust things if the camp is moving to Apple.
 
 It should be noted that you should not move the various contents around the program on your computer. You will recieve this file in a folder, and you should keep this folder together.
+
+If you run into any issues, feel free to check the following link to view an updated version of instructions. https://github.com/Connorch-23/class_sorter/blob/master/README.md 
