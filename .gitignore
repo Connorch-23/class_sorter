@@ -1,2 +1,84 @@
 # Project exclude paths
 /target/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# PyInstaller
+#  - https://pyinstaller.readthedocs.io/en/latest/usage.html#cmdoption-onefile
+*.onefile.exe
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# OS generated files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Python specific
+.env
+.env.local
+.env.*.local
+.envrc
+.envrc.local
+
+# Your project-specific ignores
+inputs/
+outputs/
+*.csv
+*.log
+
+# Virtual environments (if using venv)
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# uv specific
+.venv/
