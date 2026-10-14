@@ -9,6 +9,9 @@ dependencies = [
     "pytest>=9.1.1",
 ]
 
+[project.scripts]
+class-sorter = "class_sorter.main:main"
+
 [build-system]
 requires = ["uv-build>=0.13.0,<0.14.0"]
 build-backend = "uv_build"
