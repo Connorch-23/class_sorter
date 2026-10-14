@@ -6,7 +6,6 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "pandas>=2.0.0",
-    "pytest>=9.1.1",
 ]
 
 [project.scripts]
@@ -15,3 +14,8 @@ class-sorter = "class_sorter.main:main"
 [build-system]
 requires = ["uv-build>=0.13.0,<0.14.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

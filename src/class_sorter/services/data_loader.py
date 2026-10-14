@@ -3,15 +3,28 @@ import pandas as pd
 def load_classes(file_path):
     raw_classes = pd.read_csv(file_path)
     
+    # Validate records exist
+    if len(raw_classes) == 0:
+        raise ValueError("Classes must be populated in input file")
+    
+    
     # Validate dataframe structure
     expected_columns = [
         'class_id', 'capacity_a', 'capacity_b', 'capacity_c', 
         'capacity_d', 'minimum_age', 'shooting_permissions_needed'
     ]
     
-    if not all(col in raw_classes.columns for col in expected_columns):
-        missing_cols = [col for col in expected_columns if col not in raw_classes.columns]
-        raise ValueError(f"Missing required columns: {missing_cols}")
+    actual = set(raw_classes.columns)
+    expected = set(expected_columns)
+
+    missing = expected - actual
+    extra   = actual - expected
+
+    if missing:
+        raise ValueError(f"Missing required columns: {sorted(missing)}")
+    if extra:
+        raise ValueError(f"Unexpected columns: {sorted(extra)}")
+    
     
     # Validate data types and handle empty cells
     numeric_columns = ['capacity_a', 'capacity_b', 'capacity_c', 'capacity_d', 'minimum_age']
