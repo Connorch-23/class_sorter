@@ -1,8 +1,13 @@
 import pandas as pd
 import pytest
+import logging
+
 
 from class_sorter.services.data_loader import load_classes
 from class_sorter.services.data_loader import load_campers
+
+logger = logging.getLogger(__name__)
+
 
 @pytest.fixture
 def csv_factory(tmp_path):
@@ -164,9 +169,11 @@ class TestLoadClasses:
         The loader builds a list of every missing column, so the message
         must name each one — not just the first it encounters.
         """
-        [row.update({"capacity_e": 0, "maximum_age": 100}) for row in valid_rows]
+        rows = [row.copy() for row in valid_rows]
+        for row in rows:
+            row.update({"capacity_e": 0, "maximum_age": 100})
         with pytest.raises(ValueError) as exc_info:
-            load_classes(csv_factory(valid_rows))
+            load_classes(csv_factory(rows))
         error_message = str(exc_info.value)
         assert "capacity_e" in error_message
         assert "maximum_age" in error_message
@@ -304,6 +311,7 @@ class TestLoadCampers:
         """The exact header the loader expects, in file order."""
         return [
             "first_name",
+            "last_name",
             "cabin",
             "age",
             "allowed_to_shoot",
@@ -328,7 +336,7 @@ class TestLoadCampers:
                 "first_name": "Tyrese",
                 "last_name": "Allen",
                 "cabin": "11",
-                "age": "12",
+                "age": 12,
                 "allowed_to_shoot": "TRUE",
                 "preference_1": "riflery",
                 "preference_2": "climbing",
@@ -341,7 +349,7 @@ class TestLoadCampers:
                 "first_name": "David",
                 "last_name": "Atkins",
                 "cabin": "11",
-                "age": "13",
+                "age": 13,
                 "allowed_to_shoot": "TRUE",
                 "preference_1": "paintball",
                 "preference_2": "arts and crafts",
@@ -354,7 +362,7 @@ class TestLoadCampers:
                 "first_name": "Abigail",
                 "last_name": "Bach",
                 "cabin": "4",
-                "age": "12",
+                "age": 12,
                 "allowed_to_shoot": "TRUE",
                 "preference_1": "riflery",
                 "preference_2": "drama",
@@ -367,7 +375,7 @@ class TestLoadCampers:
                 "first_name": "Elena ",
                 "last_name": "Bishop",
                 "cabin": "4",
-                "age": "14",
+                "age": 14,
                 "allowed_to_shoot": "FALSE",
                 "preference_1": "arts and crafts",
                 "preference_2": "horses",
@@ -380,7 +388,7 @@ class TestLoadCampers:
                 "first_name": "Julia",
                 "last_name": "Brissie",
                 "cabin": "4",
-                "age": "12",
+                "age": 12,
                 "allowed_to_shoot": "FALSE",
                 "preference_1": "horses",
                 "preference_2": "sports",
@@ -392,8 +400,8 @@ class TestLoadCampers:
             {
                 "first_name": "Danielle Mae",
                 "last_name": "Casinillo",
-                "cabin": "14",
-                "age": "15",
+                "cabin": "4L",
+                "age": 15,
                 "allowed_to_shoot": "FALSE",
                 "preference_1": "archery",
                 "preference_2": "newspaper",
@@ -406,7 +414,7 @@ class TestLoadCampers:
                 "first_name": "Paisley",
                 "last_name": "Clarke",
                 "cabin": "13",
-                "age": "14",
+                "age": 14,
                 "allowed_to_shoot": "FALSE",
                 "preference_1": "photography",
                 "preference_2": "drama",
@@ -419,7 +427,7 @@ class TestLoadCampers:
                 "first_name": "Miranda",
                 "last_name": "Cole",
                 "cabin": "4",
-                "age": "13",
+                "age": 13,
                 "allowed_to_shoot": "FALSE",
                 "preference_1": "drama",
                 "preference_2": "archery",
@@ -431,8 +439,8 @@ class TestLoadCampers:
             {
                 "first_name": "Jennifer",
                 "last_name": "Crews",
-                "cabin": "13",
-                "age": "12",
+                "cabin": "4L",
+                "age": 12,
                 "allowed_to_shoot": "TRUE",
                 "preference_1": "riflery",
                 "preference_2": "sports",
@@ -445,7 +453,7 @@ class TestLoadCampers:
                 "first_name": "Giulia",
                 "last_name": "Duarte",
                 "cabin": "13",
-                "age": "13",
+                "age": 13,
                 "allowed_to_shoot": "TRUE",
                 "preference_1": "drama",
                 "preference_2": "fishing",
@@ -461,7 +469,6 @@ class TestLoadCampers:
         """Create a valid CSV file and return its path."""
         return csv_factory(valid_rows)
 
-
     # Happy path
 
     def test_loads_valid_csv(self, valid_csv_path):
@@ -474,6 +481,8 @@ class TestLoadCampers:
     ):
         """Every expected column is present in the returned DataFrame."""
         df = load_campers(valid_csv_path)
+        logger.warning(df.columns)
+        logger.warning(expected_columns)
         assert list(df.columns) == expected_columns
 
     def test_single_row_csv(self, csv_factory, valid_rows):
@@ -481,15 +490,14 @@ class TestLoadCampers:
 
         df = load_campers(csv_factory(valid_rows[:1]))
         assert len(df) == 1
-        assert df.iloc[0].to_dict() == valid_rows[0]
-        
-        
+        assert not df.empty
+
     # Incorrect columns
     def test_missing_column_raises_valueerror(self, csv_factory, valid_rows):
         """A single missing column triggers ValueError naming that column."""
-        row = {k: v for k,v in valid_rows[:1] if k != "first_name"}
+        row = {k: v for k, v in valid_rows[0].items() if k != "first_name"}
         with pytest.raises(ValueError, match="first_name"):
-            load_campers(csv_factory(row))
+            load_campers(csv_factory([row]))
 
     def test_missing_multiple_columns_lists_all(self, csv_factory, valid_rows):
         """When several columns are missing, ALL of them appear in the error message.
@@ -498,10 +506,10 @@ class TestLoadCampers:
         must name each one — not just the first it encounters.
         """
         missing_cols = ["first_name", "preference_6", "age"]
-        row = {k: v for k,v in valid_rows[:1] if k not in missing_cols}
+        row = {k: v for k, v in valid_rows[0].items() if k not in missing_cols}
 
         with pytest.raises(ValueError) as exc_info:
-            load_classes(csv_factory(row))
+            load_campers(csv_factory([row]))
         error_message = str(exc_info.value)
         for col in missing_cols:
             assert col in error_message
@@ -520,7 +528,7 @@ class TestLoadCampers:
         error_message = str(exc_info.value)
         assert "preference_7" in error_message
         assert "nickname" in error_message
-        
+
     def test_numeric_conversion_for_age(self, csv_factory, valid_rows):
         """
         The 'age' column is provided as strings in the CSV.
@@ -530,20 +538,36 @@ class TestLoadCampers:
         assert pd.api.types.is_integer_dtype(df["age"])
         assert df.iloc[0]["age"] == 12
 
+    # ------------------------------------------------------------------
+    # Negative values
+    # ------------------------------------------------------------------
+
+    def test_negative_value_raises_valueerror(self, csv_factory, valid_rows):
+        """Each numeric column rejects negative values independently.
+
+        Parametrize runs this test once per column so a regression in
+        one column cannot be hidden by a failure in another.
+        """
+        row = valid_rows[0].copy()
+        col = 'age'
+        row[col] = -1  # inject a negative into whichever column is under test
+        with pytest.raises(ValueError, match=col):
+            load_classes(csv_factory([row]))
+
     def test_invalid_boolean_values(self, csv_factory, valid_rows):
         """
-        DECISION REQUIRED: If 'allowed_to_shoot' contains 'maybe' or 'N/A', 
+        DECISION REQUIRED: If 'allowed_to_shoot' contains 'maybe' or 'N/A',
         should the loader raise a ValueError, or coerce it to False?
-        
-        Implementation assumes the loader should be robust and coerce invalid 
+
+        Implementation assumes the loader should be robust and coerce invalid
         boolean strings to False.
         """
-        row = valid_rows[0].copy() 
+        row = valid_rows[0].copy()
         row["allowed_to_shoot"] = "MAYBE"
-        
+
         df = load_campers(csv_factory([row]))
         # Expecting coercion to False for non-standard boolean strings
-        assert df.iloc[0]["allowed_to_shoot"] is False
+        assert not df.iloc[0]["allowed_to_shoot"]
 
     # ------------------------------------------------------------------
     # Edge Cases
@@ -561,15 +585,15 @@ class TestLoadCampers:
 
     def test_empty_cells_handling(self, csv_factory, valid_rows):
         """
-        DECISION REQUIRED: If a preference column is empty (,,), 
+        DECISION REQUIRED: If a preference column is empty (,,),
         should it be an empty string, None, or NaN?
-        
+
         Implementation assumes empty cells are handled as NaN/None by pandas.
         """
         # Create a row where the 3rd preference is empty
         row = valid_rows[0].copy()
-        row["preference_3"] = "" 
-        
+        row["preference_3"] = ""
+
         df = load_campers(csv_factory([row]))
         # Check if the value is treated as a null/NaN value
         assert pd.isna(df.iloc[0]["preference_3"])

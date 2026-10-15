@@ -1,8 +1,77 @@
 import pandas as pd
+import numpy as np
 
 
 def load_campers(file_path):
     raw_campers = pd.read_csv(file_path)
+
+    # Validate records exist
+    if len(raw_campers) == 0:
+        raise ValueError("Campers must be populated in input file")
+
+    # Validate dataframe structure
+    expected_columns = [
+        "first_name",
+        "last_name",
+        "cabin",
+        "age",
+        "allowed_to_shoot",
+        "preference_1",
+        "preference_2",
+        "preference_3",
+        "preference_4",
+        "preference_5",
+        "preference_6",
+    ]
+
+    actual = set(raw_campers.columns)
+    expected = set(expected_columns)
+
+    missing = expected - actual
+    extra = actual - expected
+
+    if missing:
+        raise ValueError(f"Missing required columns: {sorted(missing)}")
+    if extra:
+        raise ValueError(f"Unexpected columns: {sorted(extra)}")
+
+    # Validate data types and handle empty cells
+    numeric_columns = ["age"]
+    for col in numeric_columns:
+        # Convert to numeric, treating NaN as 0 for validation purposes
+        temp_series = pd.to_numeric(raw_campers[col], errors="coerce").fillna(0)
+
+        # Check if all values (after conversion) are integers
+        if not (temp_series == temp_series.astype(int)).all():
+            raise TypeError(f"Column {col} must contain integer values")
+
+        # Actually convert the column to have proper integer type with NaN for missing values
+        raw_campers[col] = pd.to_numeric(raw_campers[col], errors="coerce")
+
+    col = "allowed_to_shoot"
+    mapping = {"true": True, "false": False, "": False, "nan": False}
+
+    # Coerce 'allowed_to_shoot' to boolean: Only 'true' becomes True, everything else is False
+    col = "allowed_to_shoot"
+    normalized = raw_campers[col].astype(str).str.strip().str.lower()
+    # Map the values
+    raw_campers[col] = normalized.map(mapping).fillna(False).astype(bool)
+
+    text_columns = [
+        "first_name",
+        "last_name",
+        "cabin",
+        "preference_1",
+        "preference_2",
+        "preference_3",
+        "preference_4",
+        "preference_5",
+        "preference_6",
+    ]
+    for col in text_columns:
+        raw_campers[col] = raw_campers[col].astype(str)
+
+    raw_campers.replace({np.nan: None})
     return raw_campers
 
 
@@ -53,34 +122,24 @@ def load_classes(file_path):
 
         # Actually convert the column to have proper integer type with NaN for missing values
         raw_classes[col] = pd.to_numeric(raw_classes[col], errors="coerce")
-
+        
+        
     # Validate that numeric columns are non-negative
     for col in ["capacity_a", "capacity_b", "capacity_c", "capacity_d", "minimum_age"]:
         if (raw_classes[col] < 0).any():
             raise ValueError(f"Column {col} must contain non-negative values")
 
-    # Pick a validation method
-    # col = 'shooting_permissions_needed'
-    # mapping = {'true': True, 'false': False, '': False, 'nan': False}
+    col = "shooting_permissions_needed"
+    mapping = {"true": True, "false": False, "": False, "nan": False}
 
-    # normalized = raw_classes[col].astype(str).str.strip().str.lower()
+    # Coerce 'shooting_permissions_needed' to boolean: Only 'true' becomes True, everything else is False
+    normalized = raw_classes[col].astype(str).str.strip().str.lower()
+    # Map the values
+    raw_classes[col] = normalized.map(mapping).fillna(False).astype(bool)
 
-    # invalid = normalized[~normalized.isin(mapping)].unique()
-    # if len(invalid):
-    #     raise ValueError(f"{col} must be true/false or blank, got: {list(invalid)}")
+    text_columns = ["class_id"]
+    for col in text_columns:
+        raw_classes[col] = raw_classes[col].astype(str)
 
-    # raw_classes[col] = normalized.map(mapping)
-
-    # # Validate shooting_permissions_needed is a boolean column (with blanks as False)
-    # raw_classes['shooting_permissions_needed'] = raw_classes['shooting_permissions_needed'].astype(str).str.lower()
-
-    # # Replace blank/NaN values with False
-    # raw_classes['shooting_permissions_needed'] = raw_classes['shooting_permissions_needed'].replace('', False)
-    # raw_classes['shooting_permissions_needed'] = raw_classes['shooting_permissions_needed'].fillna(False)
-
-    # # Check if all values are boolean
-    # if not raw_classes['shooting_permissions_needed'].apply(lambda x: isinstance(x, bool)).all():
-    #     invalid_vals = raw_classes[~raw_classes['shooting_permissions_needed'].apply(lambda x: isinstance(x, bool))]['shooting_permissions_needed'].unique()
-    #     raise ValueError(f"shooting_permissions_needed must contain boolean values (True/False): {invalid_vals}")
-
+    raw_classes.replace({np.nan: None})
     return raw_classes
