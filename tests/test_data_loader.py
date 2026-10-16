@@ -315,12 +315,7 @@ class TestLoadCampers:
             "cabin",
             "age",
             "allowed_to_shoot",
-            "preference_1",
-            "preference_2",
-            "preference_3",
-            "preference_4",
-            "preference_5",
-            "preference_6",
+            "preferences"
         ]
 
     @pytest.fixture
@@ -338,12 +333,7 @@ class TestLoadCampers:
                 "cabin": "11",
                 "age": 12,
                 "allowed_to_shoot": "TRUE",
-                "preference_1": "riflery",
-                "preference_2": "climbing",
-                "preference_3": "paintball",
-                "preference_4": "kayaking",
-                "preference_5": "riflery",
-                "preference_6": "12 stand",
+                "preferences": ["riflery", "climbing", "paintball", "kayaking", "riflery", "12 stand"],
             },
             {
                 "first_name": "David",
@@ -351,12 +341,7 @@ class TestLoadCampers:
                 "cabin": "11",
                 "age": 13,
                 "allowed_to_shoot": "TRUE",
-                "preference_1": "paintball",
-                "preference_2": "arts and crafts",
-                "preference_3": "5 stand",
-                "preference_4": "kayaking",
-                "preference_5": "drama",
-                "preference_6": "12 stand",
+                "preferences": ["paintball", "arts and crafts", "5 stand", "kayaking", "drama", "12 stand"],
             },
             {
                 "first_name": "Abigail",
@@ -364,12 +349,7 @@ class TestLoadCampers:
                 "cabin": "4",
                 "age": 12,
                 "allowed_to_shoot": "TRUE",
-                "preference_1": "riflery",
-                "preference_2": "drama",
-                "preference_3": "5 stand",
-                "preference_4": "kayaking",
-                "preference_5": "photography",
-                "preference_6": "12 stand",
+                "preferences": ["riflery", "drama", "5 stand", "kayaking", "photography", "12 stand"],
             },
             {
                 "first_name": "Elena ",
@@ -377,12 +357,7 @@ class TestLoadCampers:
                 "cabin": "4",
                 "age": 14,
                 "allowed_to_shoot": "FALSE",
-                "preference_1": "arts and crafts",
-                "preference_2": "horses",
-                "preference_3": "sports",
-                "preference_4": "archery",
-                "preference_5": "fishing",
-                "preference_6": "12 stand",
+                "preferences": ["arts and crafts", "horses", "sports", "archery", "fishing", "12 stand"],
             },
             {
                 "first_name": "Julia",
@@ -390,12 +365,7 @@ class TestLoadCampers:
                 "cabin": "4",
                 "age": 12,
                 "allowed_to_shoot": "FALSE",
-                "preference_1": "horses",
-                "preference_2": "sports",
-                "preference_3": "drama",
-                "preference_4": "arts and crafts",
-                "preference_5": "kayaking",
-                "preference_6": "12 stand",
+                "preferences": ["horses", "sports", "drama", "arts and crafts", "kayaking", "12 stand"],
             },
             {
                 "first_name": "Danielle Mae",
@@ -403,12 +373,7 @@ class TestLoadCampers:
                 "cabin": "4L",
                 "age": 15,
                 "allowed_to_shoot": "FALSE",
-                "preference_1": "archery",
-                "preference_2": "newspaper",
-                "preference_3": "arts and crafts",
-                "preference_4": "sports",
-                "preference_5": "5 stand",
-                "preference_6": "12 stand",
+                "preferences": ["archery", "newspaper", "arts and crafts", "sports", "5 stand", "12 stand"],
             },
             {
                 "first_name": "Paisley",
@@ -416,12 +381,7 @@ class TestLoadCampers:
                 "cabin": "13",
                 "age": 14,
                 "allowed_to_shoot": "FALSE",
-                "preference_1": "photography",
-                "preference_2": "drama",
-                "preference_3": "fishing",
-                "preference_4": "sports",
-                "preference_5": "arts and crafts",
-                "preference_6": "12 stand",
+                "preferences": ["photography", "drama", "fishing", "sports", "arts and crafts", "12 stand"],
             },
             {
                 "first_name": "Miranda",
@@ -429,12 +389,7 @@ class TestLoadCampers:
                 "cabin": "4",
                 "age": 13,
                 "allowed_to_shoot": "FALSE",
-                "preference_1": "drama",
-                "preference_2": "archery",
-                "preference_3": "newspaper",
-                "preference_4": "fishing",
-                "preference_5": "climbing",
-                "preference_6": "12 stand",
+                "preferences": ["drama", "archery", "newspaper", "fishing", "climbing", "12 stand"],
             },
             {
                 "first_name": "Jennifer",
@@ -442,12 +397,7 @@ class TestLoadCampers:
                 "cabin": "4L",
                 "age": 12,
                 "allowed_to_shoot": "TRUE",
-                "preference_1": "riflery",
-                "preference_2": "sports",
-                "preference_3": "horses",
-                "preference_4": "photography",
-                "preference_5": "archery",
-                "preference_6": "12 stand",
+                "preferences": ["riflery", "sports", "horses", "photography", "archery", "12 stand"],
             },
             {
                 "first_name": "Giulia",
@@ -455,12 +405,7 @@ class TestLoadCampers:
                 "cabin": "13",
                 "age": 13,
                 "allowed_to_shoot": "TRUE",
-                "preference_1": "drama",
-                "preference_2": "fishing",
-                "preference_3": "kayaking",
-                "preference_4": "archery",
-                "preference_5": "horses",
-                "preference_6": "12 stand",
+                "preferences": ["drama", "fishing", "kayaking", "archery", "horses", "12 stand"],
             },
         ]
 
@@ -473,14 +418,14 @@ class TestLoadCampers:
 
     def test_loads_valid_csv(self, valid_csv_path):
         """Loader returns a DataFrame without raising on a well-formed CSV."""
-        df = load_campers(valid_csv_path)
-        assert isinstance(df, pd.DataFrame)
+        campers = load_campers(valid_csv_path)
+        assert isinstance(campers, list)
 
-    def test_returns_dataframe_with_expected_columns(
+    def test_returns_list_with_expected_columns(
         self, valid_csv_path, expected_columns
     ):
         """Every expected column is present in the returned DataFrame."""
-        df = load_campers(valid_csv_path)
+        df = pd.DataFrame(load_campers(valid_csv_path))
         logger.warning(df.columns)
         logger.warning(expected_columns)
         assert list(df.columns) == expected_columns
@@ -488,7 +433,7 @@ class TestLoadCampers:
     def test_single_row_csv(self, csv_factory, valid_rows):
         """Loader works correctly when the CSV contains exactly one data row."""
 
-        df = load_campers(csv_factory(valid_rows[:1]))
+        df = pd.DataFrame(load_campers(csv_factory(valid_rows[:1])))
         assert len(df) == 1
         assert not df.empty
 
@@ -505,7 +450,7 @@ class TestLoadCampers:
         The loader builds a list of every missing column, so the message
         must name each one — not just the first it encounters.
         """
-        missing_cols = ["first_name", "preference_6", "age"]
+        missing_cols = ["first_name", "preferences", "age"]
         row = {k: v for k, v in valid_rows[0].items() if k not in missing_cols}
 
         with pytest.raises(ValueError) as exc_info:
@@ -522,11 +467,11 @@ class TestLoadCampers:
         """
         dirty_rows = [row.copy() for row in valid_rows]
         for row in dirty_rows:
-            row.update({"preference_7": "paragliding", "nickname": "charlie"})
+            row.update({"birthday": "10-24-2015", "nickname": "charlie"})
         with pytest.raises(ValueError) as exc_info:
             load_campers(csv_factory(dirty_rows))
         error_message = str(exc_info.value)
-        assert "preference_7" in error_message
+        assert "birthday" in error_message
         assert "nickname" in error_message
 
     def test_numeric_conversion_for_age(self, csv_factory, valid_rows):
@@ -534,7 +479,7 @@ class TestLoadCampers:
         The 'age' column is provided as strings in the CSV.
         Does the loader convert 'age' to an integer type?
         """
-        df = load_campers(csv_factory(valid_rows))
+        df = pd.DataFrame(load_campers(csv_factory(valid_rows)))
         assert pd.api.types.is_integer_dtype(df["age"])
         assert df.iloc[0]["age"] == 12
 
@@ -565,9 +510,9 @@ class TestLoadCampers:
         row = valid_rows[0].copy()
         row["allowed_to_shoot"] = "MAYBE"
 
-        df = load_campers(csv_factory([row]))
+        campers = load_campers(csv_factory([row]))
         # Expecting coercion to False for non-standard boolean strings
-        assert not df.iloc[0]["allowed_to_shoot"]
+        assert not campers[0]["allowed_to_shoot"]
 
     # ------------------------------------------------------------------
     # Edge Cases
@@ -584,16 +529,11 @@ class TestLoadCampers:
             load_campers("/nonexistent/path/to/campers.csv")
 
     def test_empty_cells_handling(self, csv_factory, valid_rows):
-        """
-        DECISION REQUIRED: If a preference column is empty (,,),
-        should it be an empty string, None, or NaN?
-
-        Implementation assumes empty cells are handled as NaN/None by pandas.
-        """
-        # Create a row where the 3rd preference is empty
+        """Empty cells are handled as NaN/None by pandas."""
+        # Create a row where the last name is empty
         row = valid_rows[0].copy()
-        row["preference_3"] = ""
+        row["last_name"] = ""
 
-        df = load_campers(csv_factory([row]))
+        df = pd.DataFrame(load_campers(csv_factory([row])))
         # Check if the value is treated as a null/NaN value
-        assert pd.isna(df.iloc[0]["preference_3"])
+        assert pd.isna(df.iloc[0]["last_name"])

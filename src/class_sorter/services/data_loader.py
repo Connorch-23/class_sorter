@@ -16,13 +16,8 @@ def load_campers(file_path):
         "cabin",
         "age",
         "allowed_to_shoot",
-        "preference_1",
-        "preference_2",
-        "preference_3",
-        "preference_4",
-        "preference_5",
-        "preference_6",
-    ]
+        "preferences"
+        ]
 
     actual = set(raw_campers.columns)
     expected = set(expected_columns)
@@ -61,18 +56,16 @@ def load_campers(file_path):
         "first_name",
         "last_name",
         "cabin",
-        "preference_1",
-        "preference_2",
-        "preference_3",
-        "preference_4",
-        "preference_5",
-        "preference_6",
+        "preferences"
     ]
     for col in text_columns:
         raw_campers[col] = raw_campers[col].astype(str)
 
-    raw_campers.replace({np.nan: None})
-    return raw_campers
+    # Convert preferences string into a list of strings
+    raw_campers['preferences'] = raw_campers['preferences'].astype(str).str.split(';')
+
+
+    return raw_campers.replace({np.nan: None}).to_dict(orient='records')
 
 
 def load_classes(file_path):
