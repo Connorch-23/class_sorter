@@ -1,21 +1,26 @@
-# from models.camper import Camper
-# from models.class_ import Class
+import logging
+from class_sorter.models.campers import Camper
+from class_sorter.models.classes import Classes
 from class_sorter.services.data_loader import load_classes, load_campers
 # from controllers.sorter import sort_campers
 # from controllers.output_formatter import export_results
 
+logger = logging.getLogger(__name__)
 
 def main():
     """Main entry point for the campers/classes import system."""
 
     try:
         # Load data from CSV files
-        classes_df = load_classes("inputs/classes_input.csv")
-        campers_df = load_campers("inputs/Campers-test.csv")
+        classes_raw = load_classes("inputs/classes_input.csv")
+        campers_raw = load_campers("inputs/campers_input.csv")
+        print(f"Camper csv loaded {len(campers_raw)} dictionaries")
 
         # Create objects
-        # campers = [Camper(row) for _, row in campers_df.iterrows()]
-        # classes = [Class(row) for _, row in classes_df.iterrows()]
+        campers = [Camper(**camper_data) for camper_data in campers_raw]
+        print(f"Loaded {len(campers)} Camper objects")
+    
+        classes = [Classes(**class_data) for class_data in classes_raw]
 
         # Process
         # sorted_campers = sort_campers(campers, classes)
