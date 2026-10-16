@@ -34,6 +34,13 @@ def main():
         print(f"Error: Required file not found - {e}")
     except Exception as e:
         print(f"Unexpected error occurred: {e}")
+        
+        ## TODO: Refactor test_data_loader.py for classes to adjust for new intake of period capacities
+        ## TODO: Refactor data_loader.py for classes to adjust for new intake of period capacities such that all tests pass
+        ## TODO: Create test_period.py to dictate the behavior periods        
+        ## TODO: Create a class called Period. That period has the property class and capacity. Available periods are made from the classes list.
+        ## TODO: Refactor class inputs to have a list of capacities for each period. This should either come as column1, column2, columnN or capacities= capacity;capacity;capacity where
+        ## a blank cell means 0 capacity. 
 
 
 if __name__ == "__main__":

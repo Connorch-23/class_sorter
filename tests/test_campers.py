@@ -184,6 +184,7 @@ class TestCamperInitialization:
         assert camper.age == camper_raw["age"]
         assert camper.allowed_to_shoot == camper_raw["allowed_to_shoot"]
         assert len(camper.preferences) == 6
+        assert len(camper.classes) == 0
 
     def test_camper_object_populated(self, valid_campers):
         """Testing a camper can be created with an object"""
@@ -244,5 +245,6 @@ class TestCamperInitialization:
 
 
 
-    # Constraints and Errors
-
+        
+class TestCamperMethods:
+    """Tests focused on how camper properties/methods behave"""
