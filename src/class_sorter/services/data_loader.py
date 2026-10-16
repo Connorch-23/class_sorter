@@ -114,7 +114,7 @@ def load_classes(file_path):
             raise TypeError(f"Column {col} must contain integer values")
 
         # Actually convert the column to have proper integer type with NaN for missing values
-        raw_classes[col] = pd.to_numeric(raw_classes[col], errors="coerce")
+        raw_classes[col] = pd.to_numeric(raw_classes[col], errors="coerce").fillna(0)
         
         
     # Validate that numeric columns are non-negative
@@ -134,5 +134,4 @@ def load_classes(file_path):
     for col in text_columns:
         raw_classes[col] = raw_classes[col].astype(str)
 
-    raw_classes.replace({np.nan: None})
-    return raw_classes
+    return raw_classes.replace({np.nan: None}).to_dict(orient="records")

@@ -94,15 +94,15 @@ class TestLoadClasses:
 
     def test_loads_valid_csv(self, valid_csv_path):
         """Loader returns a DataFrame without raising on a well-formed CSV."""
-        df = load_classes(valid_csv_path)
-        assert isinstance(df, pd.DataFrame)
+        classes = load_classes(valid_csv_path)
+        assert isinstance(classes, list)
 
     def test_returns_dataframe_with_expected_columns(
         self, valid_csv_path, expected_columns
     ):
         """Every expected column is present in the returned DataFrame."""
-        df = load_classes(valid_csv_path)
-        assert list(df.columns) == expected_columns
+        classes = pd.DataFrame(load_classes(valid_csv_path))
+        assert list(classes.columns) == expected_columns
 
     def test_single_row_csv(self, csv_factory):
         """Loader works correctly when the CSV contains exactly one data row."""
@@ -117,9 +117,9 @@ class TestLoadClasses:
                 "shooting_permissions_needed": False,
             }
         ]
-        df = load_classes(csv_factory(row))
-        assert len(df) == 1
-        assert df.iloc[0]["class_id"] == "archery"
+        classes = load_classes(csv_factory(row))
+        assert len(classes) == 1
+        assert classes[0]["class_id"] == "archery"
 
     # ------------------------------------------------------------------
     # Incorrect columns
@@ -205,8 +205,8 @@ class TestLoadClasses:
             }
         ]
         # Loader does NOT raise; 'abc' is coerced to NaN then treated as 0
-        df = load_classes(csv_factory(rows))
-        assert pd.isna(df.iloc[0]["capacity_a"])
+        classes = load_classes(csv_factory(rows))
+        assert classes[0]['capacity_a'] == 0
 
     def test_float_in_numeric_column_raises_typeerror(self, csv_factory):
         """A genuine decimal (e.g. 3.14) raises TypeError; a whole-number
@@ -426,8 +426,6 @@ class TestLoadCampers:
     ):
         """Every expected column is present in the returned DataFrame."""
         df = pd.DataFrame(load_campers(valid_csv_path))
-        logger.warning(df.columns)
-        logger.warning(expected_columns)
         assert list(df.columns) == expected_columns
 
     def test_single_row_csv(self, csv_factory, valid_rows):
