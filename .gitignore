@@ -69,7 +69,6 @@ Desktop.ini
 
 # Your project-specific ignores
 outputs/
-*.csv
 *.log
 
 # Virtual environments (if using venv)
