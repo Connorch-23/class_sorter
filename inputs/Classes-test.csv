@@ -1,0 +1,14 @@
+Class Name,CapacityA,CapacityB,CapacityC,CapacityD,WillShoot?
+riflery,15,15,15,15,TRUE
+drama,15,15,15,15,FALSE
+photography,8,8,8,8,FALSE
+fishing,17,17,17,17,FALSE
+kayaking,18,18,18,18,FALSE
+5 stand,0,1,15,15,TRUE
+arts and crafts,20,20,20,20,FALSE
+climbing,11,11,11,11,FALSE
+archery,20,20,20,20,FALSE
+horses,15,15,15,15,FALSE
+paintball,10,10,10,10,TRUE
+sports,14,14,14,14,FALSE
+newspaper,12,12,12,12,FALSE

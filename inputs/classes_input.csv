@@ -1,0 +1,14 @@
+class_id,capacity_a,capacity_b,capacity_c,capacity_d,minimum_age,shooting_permissions_needed
+riflery,15,15,15,15,12,TRUE
+drama,15,15,15,15,,FALSE
+photography,8,8,8,8,,FALSE
+fishing,17,17,17,17,,FALSE
+kayaking,18,18,18,18,,FALSE
+five_stand,,1,15,15,14,TRUE
+arts and crafts,20,20,20,20,,FALSE
+climbing,11,11,11,11,,FALSE
+archery,20,20,20,20,,FALSE
+horses,15,15,15,15,,FALSE
+paintball,10,10,10,,12,TRUE
+sports,14,14,14,14,,FALSE
+newspaper,12,12,12,12,,FALSE

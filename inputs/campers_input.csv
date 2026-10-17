@@ -1,0 +1,181 @@
+first_name,last_name,cabin,age,allowed_to_shoot,preferences
+Tyrese,Allen,11,12,TRUE,riflery;climbing;paintball;kayaking;riflery;12 stand
+David,Atkins,11,13,TRUE,paintball;arts and crafts;5 stand;kayaking;drama;12 stand
+Abigail,Bach,4,12,TRUE,riflery;drama;5 stand;kayaking;photography;12 stand
+Elena ,Bishop,4,14,FALSE,arts and crafts;horses;sports;archery;fishing;12 stand
+Julia,Brissie,4,12,FALSE,horses;sports;drama;arts and crafts;kayaking;12 stand
+Danielle Mae,Casinillo,14,15,FALSE,archery;newspaper;arts and crafts;sports;5 stand;12 stand
+Paisley,Clarke,13,14,FALSE,photography;drama;fishing;sports;arts and crafts;12 stand
+Miranda,Cole,4,13,FALSE,drama;archery;newspaper;fishing;climbing;12 stand
+Jennifer,Crews,13,12,TRUE,riflery;sports;horses;photography;archery;12 stand
+Giulia,Duarte,13,13,TRUE,drama;fishing;kayaking;archery;horses;12 stand
+Allison,Erwin,13,13,TRUE,sports;arts and crafts;kayaking;climbing;paintball;12 stand
+Summer,Finch,13,14,TRUE,riflery;climbing;arts and crafts;paintball;sports;12 stand
+Breison,Foster,11,14,TRUE,5 stand;fishing;horses;photography;newspaper;12 stand
+Catherine,Fradenburg,14,14,FALSE,climbing;arts and crafts;sports;kayaking;riflery;12 stand
+Michael,Gilbert,12,13,TRUE,5 stand;archery;fishing;drama;drama;archery
+Ava,Gilmore,13,12,TRUE,climbing;paintball;5 stand;archery;photography;archery
+Paris,Graham,14,15,TRUE,5 stand;sports;paintball;fishing;fishing;archery
+Alice,Gwyn,4,12,TRUE,photography;arts and crafts;drama;fishing;kayaking;archery
+Amadahy,Hammond,12,13,TRUE,arts and crafts;photography;drama;newspaper;6 stand;archery
+Hayden,Head,14,14,TRUE,kayaking;fishing;5 stand;archery;arts and crafts;archery
+andrew,Holland,11,12,FALSE,fishing;archery;drama;archery;climbing;archery
+Samantha,Huntley,4L,15,FALSE,kayaking;arts and crafts;kayaking;drama;archery;archery
+Sean,James,12,12,TRUE,sports;fishing;paintball;newspaper;horses;archery
+Mya,James,14,15,TRUE,drama;arts and crafts;archery;kayaking;paintball;archery
+Lucas,Johnson,11,14,TRUE,horses;newspaper;archery;sports;sports;archery
+Caymiah,Kimbrough,4L,12,TRUE,arts and crafts;fishing;sports;climbing;newspaper;archery
+Zowie,Knight,14,12,TRUE,fishing;riflery;climbing;archery;riflery;archery
+Kate,Krasowski,13,13,TRUE,newspaper;riflery;climbing;sports;drama;archery
+Emilio,Lim,11,15,TRUE,arts and crafts;climbing;horses;paintball;photography;arts and crafts
+Zachary,Linton,12,14,FALSE,horses;arts and crafts;fishing;newspaper;fishing;arts and crafts
+Margaret,Lyda,4,14,FALSE,drama;newspaper;archery;horses;kayaking;arts and crafts
+Anna,Miller,4L,13,TRUE,paintball;5 stand;photography;climbing;7 stand;arts and crafts
+Elsa,Mitchell,14,14,TRUE,climbing;5 stand;kayaking;newspaper;arts and crafts;arts and crafts
+Avery,Morris,4,12,TRUE,5 stand;photography;sports;kayaking;climbing;arts and crafts
+Cameron,Morris,14,12,FALSE,fishing;photography;arts and crafts;drama;archery;arts and crafts
+Summmer,Morris,4L,13,TRUE,riflery;drama;newspaper;paintball;horses;arts and crafts
+Abigail,Mulry,13,13,TRUE,newspaper;photography;riflery;5 stand;paintball;arts and crafts
+Kazia,Murray,4L,14,TRUE,drama;fishing;newspaper;horses;sports;arts and crafts
+Lauren,Oliver,4L,15,TRUE,kayaking;fishing;riflery;horses;newspaper;arts and crafts
+Juliana,Ortiz,4L,15,TRUE,5 stand;kayaking;newspaper;drama;riflery;arts and crafts
+Kaydance,Owens,13,14,TRUE,climbing;sports;archery;5 stand;drama;arts and crafts
+Emily,Pappas,4L,13,TRUE,drama;sports;arts and crafts;5 stand;photography;arts and crafts
+Joey,Pardini,12,14,TRUE,riflery;photography;drama;fishing;fishing;climbing
+Arisha',Parker,13,13,TRUE,sports;newspaper;riflery;fishing;kayaking;climbing
+Arav,Patel,12,14,TRUE,climbing;fishing;horses;newspaper;8 stand;climbing
+Jamie,Patton,4,13,TRUE,paintball;climbing;riflery;horses;arts and crafts;climbing
+Nina,Pearson,4L,13,TRUE,riflery;archery;drama;kayaking;climbing;climbing
+Julia,Piercy,14,13,TRUE,photography;archery;drama;kayaking;archery;climbing
+Xandrea,Pittman,4L,13,TRUE,kayaking;climbing;horses;photography;horses;climbing
+Meredith,Poindexter,4L,15,TRUE,newspaper;5 stand;fishing;sports;paintball;climbing
+andrew,Post,12,15,TRUE,newspaper;drama;sports;horses;sports;climbing
+Jack,Powell,12,12,TRUE,climbing;5 stand;newspaper;photography;newspaper;climbing
+Kara,Preli,4,15,TRUE,sports;climbing;drama;arts and crafts;riflery;climbing
+Logan,Ramsey,12,15,TRUE,drama;sports;newspaper;horses;drama;climbing
+Juliana,Reali,4,14,TRUE,archery;horses;riflery;drama;photography;climbing
+Antonia,Reali,14,15,TRUE,riflery;paintball;newspaper;kayaking;fishing;climbing
+Charles,Richards,11,13,TRUE,riflery;drama;horses;paintball;kayaking;drama
+Isaiah,Roberts,11,15,TRUE,climbing;archery;kayaking;sports;9 stand;drama
+Sydney,Sanders,4,14,TRUE,paintball;5 stand;riflery;drama;arts and crafts;drama
+Bella,Santos,13,15,TRUE,arts and crafts;5 stand;horses;sports;climbing;drama
+Dani,Schillmoller,13,15,TRUE,fishing;kayaking;riflery;sports;archery;drama
+Caleigh,Sipprell,4L,12,TRUE,drama;sports;paintball;climbing;horses;drama
+Tajzii,Smith,11,13,TRUE,sports;climbing;newspaper;fishing;paintball;drama
+Patience,Smith,14,14,FALSE,horses;archery;newspaper;sports;sports;drama
+Peyton,Snith,13,14,TRUE,arts and crafts;climbing;photography;archery;newspaper;drama
+William,Thompson,11,12,TRUE,5 stand;arts and crafts;fishing;kayaking;riflery;drama
+Elizabeth Jane,Tucker,4L,15,TRUE,paintball;riflery;sports;fishing;drama;drama
+Abigail,Wagner,14,13,TRUE,sports;kayaking;newspaper;5 stand;photography;drama
+Braden,Wigfall,12,12,TRUE,archery;arts and crafts;kayaking;5 stand;fishing;drama
+Jeffrey,Woodlief,11,14,TRUE,kayaking;newspaper;archery;photography;kayaking;drama
+Tyler,Woodlief,12,14,TRUE,newspaper;photography;arts and crafts;paintball;10 stand;fishing
+Nicholas (Nico),Yohannes,12,15,TRUE,horses;climbing;drama;archery;arts and crafts;fishing
+Kaelan,Young,11,12,TRUE,arts and crafts;drama;archery;5 stand;climbing;fishing
+Isabel,Young,13,15,TRUE,newspaper;5 stand;arts and crafts;fishing;archery;fishing
+Caitlin,Blevins,2,13,TRUE,climbing;horses;arts and crafts;riflery;horses;fishing
+Alanah,Brown,2,14,FALSE,arts and crafts;drama;archery;drama;paintball;fishing
+Ava Ryan,Dillon,2,14,TRUE,kayaking;newspaper;drama;fishing;sports;fishing
+Avery,Figueroa,2,15,TRUE,drama;fishing;5 stand;arts and crafts;newspaper;fishing
+Lilly,Hardy,2,13,TRUE,drama;sports;arts and crafts;5 stand;riflery;fishing
+Julia,Hunter,2,15,TRUE,kayaking;paintball;riflery;arts and crafts;drama;fishing
+Kimberly,Moore,2,14,TRUE,kayaking;horses;photography;riflery;photography;fishing
+Ava,Needham,2,12,TRUE,sports;archery;climbing;arts and crafts;fishing;fishing
+Sarah,Pardue,2,12,TRUE,5 stand;sports;fishing;arts and crafts;kayaking;fishing
+Avery,Schillmoller,2,13,TRUE,paintball;5 stand;sports;horses;11 stand;fishing
+Ibryana,Sloan,2,15,TRUE,archery;fishing;5 stand;paintball;arts and crafts;horses
+Dixon,Widmayer,2,15,TRUE,fishing;arts and crafts;horses;newspaper;climbing;horses
+Keira,Bach,3,15,FALSE,photography;horses;arts and crafts;climbing;archery;horses
+Leslie,Barley,3,14,TRUE,horses;paintball;kayaking;arts and crafts;horses;horses
+Reagan,Boles,3,14,TRUE,5 stand;drama;climbing;paintball;paintball;horses
+Brooke,Cosby,3,13,TRUE,paintball;archery;fishing;sports;sports;horses
+Kennedy,Gibble,3,13,TRUE,riflery;archery;fishing;horses;newspaper;horses
+Ava,Jones,3,14,FALSE,kayaking;sports;fishing;archery;riflery;horses
+Lauren,Locke,3,15,TRUE,5 stand;kayaking;newspaper;drama;drama;horses
+Megan,Moore,3,13,TRUE,arts and crafts;5 stand;archery;paintball;photography;horses
+Bridget,Mulcahy,3,15,TRUE,horses;kayaking;5 stand;arts and crafts;fishing;horses
+Lola,Needham,3,12,TRUE,arts and crafts;fishing;paintball;newspaper;kayaking;horses
+Addison,O'Neal,3,15,FALSE,archery;sports;fishing;kayaking;12 stand;horses
+Kyah,Rehberg,3,12,TRUE,horses;kayaking;5 stand;riflery;arts and crafts;horses
+Lucie,Sharp,3,12,TRUE,kayaking;drama;horses;newspaper;climbing;kayaking
+Will,Belton,7,15,TRUE,kayaking;horses;5 stand;riflery;archery;kayaking
+Joseph,Black,7,14,TRUE,archery;riflery;arts and crafts;horses;horses;kayaking
+Nate,Ellis,7,14,FALSE,kayaking;arts and crafts;sports;drama;paintball;kayaking
+Ziggy,Ganzhorn,7,13,TRUE,paintball;fishing;horses;kayaking;sports;kayaking
+Max,Garlinghouse,7,14,TRUE,paintball;5 stand;archery;newspaper;newspaper;kayaking
+Jackson,Green,7,13,TRUE,climbing;arts and crafts;sports;archery;riflery;kayaking
+Jomei,Hammond,7,15,FALSE,fishing;kayaking;horses;arts and crafts;drama;kayaking
+Carter,Haynes,7,13,TRUE,sports;photography;riflery;fishing;photography;kayaking
+Max,Hill,7,12,TRUE,drama;riflery;climbing;archery;fishing;kayaking
+Rogelio Jr,Jarquins,7,15,TRUE,arts and crafts;drama;riflery;drama;kayaking;kayaking
+Aidan,Morris,7,13,TRUE,photography;kayaking;archery;paintball;13 stand;kayaking
+Anthony,Pizzarro,7,14,TRUE,fishing;horses;sports;fishing;arts and crafts;kayaking
+John,Scott,7,14,TRUE,kayaking;horses;paintball;5 stand;climbing;kayaking
+Ashton,Blevins,8,13,FALSE,newspaper;drama;arts and crafts;horses;archery;newspaper
+andrew,Brissie,8,14,FALSE,fishing;paintball;arts and crafts;drama;horses;newspaper
+Noah,Comer,8,14,FALSE,horses;kayaking;fishing;archery;paintball;newspaper
+Daniel,DeVaux,8,15,FALSE,newspaper;archery;climbing;photography;sports;newspaper
+Eric,DeVaux,8,15,FALSE,sports;archery;drama;fishing;newspaper;newspaper
+Roman,Dixon,8,14,FALSE,kayaking;arts and crafts;horses;drama;riflery;newspaper
+Colten,Edwards,8,12,FALSE,paintball;fishing;kayaking;kayaking;drama;newspaper
+Warren,Itenson,8,14,TRUE,fishing;riflery;paintball;horses;photography;newspaper
+Cameron,Jakubczak,8,15,TRUE,5 stand;paintball;kayaking;drama;fishing;newspaper
+Robert,Lyda Jr,8,12,TRUE,climbing;arts and crafts;photography;riflery;kayaking;newspaper
+Luke,Nevius,8,15,TRUE,5 stand;riflery;horses;photography;14 stand;newspaper
+Sahil,Patel,8,15,TRUE,photography;newspaper;arts and crafts;archery;arts and crafts;newspaper
+Davis,Post,8,13,FALSE,climbing;archery;archery;drama;climbing;newspaper
+Silas,Richardson,8,12,TRUE,sports;paintball;arts and crafts;riflery;archery;paintball
+Martin,Suarez,8,15,TRUE,5 stand;arts and crafts;fishing;archery;horses;paintball
+Jace,Travis,8,13,TRUE,fishing;riflery;kayaking;archery;paintball;paintball
+Brij,Bhatt,9,15,TRUE,drama;newspaper;kayaking;climbing;sports;paintball
+Cole,Conatser,9,15,TRUE,newspaper;drama;climbing;sports;newspaper;paintball
+Matthew,Gwaltney,9,15,TRUE,archery;sports;5 stand;horses;riflery;paintball
+Jake,Hill,9,15,TRUE,newspaper;kayaking;photography;climbing;drama;paintball
+Avery,Hill,9,15,TRUE,arts and crafts;5 stand;kayaking;riflery;photography;paintball
+Jackson,Howard,9,12,TRUE,sports;climbing;riflery;5 stand;fishing;paintball
+Arian,Mehrotra,9,13,TRUE,fishing;horses;sports;arts and crafts;kayaking;paintball
+Roman,Patel,9,13,TRUE,fishing;climbing;kayaking;arts and crafts;15 stand;paintball
+Kaesar,Patel,9,13,TRUE,drama;paintball;climbing;kayaking;arts and crafts;paintball
+Shaan,Patel,9,12,TRUE,newspaper;riflery;kayaking;fishing;climbing;paintball
+Tucker,Radford,9,15,TRUE,sports;arts and crafts;fishing;archery;archery;paintball
+Finn,Roberts,9,12,TRUE,arts and crafts;fishing;paintball;archery;horses;photography
+Hezekiah,Saunders,9,15,TRUE,newspaper;fishing;horses;kayaking;paintball;photography
+Lucas,Schroeder,9,13,TRUE,arts and crafts;horses;photography;riflery;sports;photography
+Alexander,Valchev,9,15,TRUE,horses;archery;archery;newspaper;newspaper;photography
+William,Baldwin,10,12,TRUE,archery;arts and crafts;5 stand;horses;riflery;photography
+Kenneth,Barnes,10,12,TRUE,paintball;5 stand;riflery;horses;drama;photography
+Conrad,Bush,10,13,FALSE,horses;arts and crafts;drama;newspaper;photography;photography
+Shane,Davis,10,14,TRUE,arts and crafts;drama;5 stand;kayaking;fishing;photography
+Steven,Kramp,10,15,TRUE,riflery;5 stand;archery;climbing;kayaking;photography
+Hank,Robinson,10,12,TRUE,climbing;riflery;kayaking;archery;16 stand;photography
+Vikas,Sarvasya,10,13,TRUE,horses;fishing;kayaking;newspaper;arts and crafts;photography
+Lucas,Shelton,10,14,TRUE,kayaking;fishing;photography;5 stand;climbing;photography
+Isaiah,Thompson,10,13,TRUE,riflery;archery;drama;riflery;archery;photography
+Cooper,Wert,10,15,TRUE,fishing;paintball;arts and crafts;sports;horses;photography
+Colin,Whelen,10,12,TRUE,kayaking;horses;archery;fishing;paintball;riflery
+Anthony,Withers,10,15,TRUE,archery;photography;arts and crafts;sports;sports;riflery
+Christopher,Shoemaker,10,12,TRUE,kayaking;horses;fishing;archery;newspaper;riflery
+Patrick,Young,10,14,TRUE,horses;riflery;climbing;fishing;riflery;riflery
+Scarlett,Barnes,2L,13,FALSE,fishing;archery;climbing;fishing;drama;riflery
+Caroline,Erwin,2L,12,FALSE,drama;archery;sports;climbing;photography;riflery
+Amelia,Hill,2L,15,FALSE,kayaking;newspaper;arts and crafts;horses;fishing;riflery
+Kelcie,Kitson,2L,12,FALSE,arts and crafts;horses;archery;sports;kayaking;riflery
+Aislynn,Maguire,2L,15,FALSE,photography;sports;arts and crafts;newspaper;17 stand;riflery
+Arianne,Monroe,2L,12,FALSE,drama;kayaking;horses;fishing;arts and crafts;riflery
+Nicola,Mulcahy,2L,13,FALSE,archery;riflery;kayaking;arts and crafts;climbing;riflery
+Zayda,Patterson,2L,13,FALSE,newspaper;archery;kayaking;climbing;archery;riflery
+Iris,Sanders,2L,15,TRUE,photography;arts and crafts;drama;climbing;horses;riflery
+Abby,Spannaus,2L,14,TRUE,horses;kayaking;arts and crafts;riflery;paintball;riflery
+Mallory,Stroud,2L,13,TRUE,riflery;kayaking;climbing;photography;sports;sports
+Katherine,Googe,2L,13,TRUE,photography;drama;paintball;kayaking;newspaper;sports
+Isabel,Wood,2L,12,TRUE,arts and crafts;archery;drama;photography;riflery;sports
+Hannah,Clarke,3L,12,TRUE,drama;newspaper;archery;arts and crafts;drama;sports
+Laila,Goldberg,3L,12,TRUE,sports;archery;photography;drama;photography;sports
+Leah,Heidepriem,3L,15,TRUE,archery;5 stand;paintball;kayaking;fishing;sports
+Ashley,Kelley,3L,14,TRUE,archery;horses;5 stand;riflery;kayaking;sports
+Erin,Locke,3L,14,TRUE,5 stand;arts and crafts;kayaking;fishing;18 stand;sports
+Makena,Moore,3L,12,TRUE,archery;horses;sports;arts and crafts;arts and crafts;sports
+Addison,Powell,3L,14,TRUE,horses;newspaper;archery;climbing;climbing;sports
+Christine,Sullivan,3L,13,TRUE,sports;paintball;newspaper;riflery;archery;sports
+Madelynn,Tise,3L,12,FALSE,arts and crafts;newspaper;sports;archery;horses;sports
+Berkeley,Turnmire,3L,13,TRUE,riflery;sports;arts and crafts;paintball;paintball;sports
