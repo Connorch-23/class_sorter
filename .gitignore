@@ -68,7 +68,6 @@ Desktop.ini
 .envrc.local
 
 # Your project-specific ignores
-inputs/
 outputs/
 *.csv
 *.log
