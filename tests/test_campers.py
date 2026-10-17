@@ -1,6 +1,7 @@
 import pytest
 import logging
 from class_sorter.models.campers import Camper
+from class_sorter.models.classes import Class
 logger = logging.getLogger(__name__)
 
 
@@ -248,3 +249,17 @@ class TestCamperInitialization:
         
 class TestCamperMethods:
     """Tests focused on how camper properties/methods behave"""
+    def test_get_enrolled_classes(self, valid_campers):
+        camper = Camper(**valid_campers[0])
+        enrolled_classes = camper.get_enrolled_classes()
+        
+        # Check that the result is a dictionary
+        assert isinstance(enrolled_classes, dict)
+        
+        # Check that all expected keys are present
+        expected_keys = {'A', 'B', 'C', 'D'}
+        assert set(enrolled_classes.keys()) == expected_keys
+        
+        # Check that all values are instances of the Class model
+        for class_obj in enrolled_classes.values():
+            assert isinstance(class_obj, Class)
