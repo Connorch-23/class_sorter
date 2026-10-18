@@ -1,6 +1,7 @@
 import pytest
 import logging
 from class_sorter.models.classes import Class
+from class_sorter.models.sections import Section
 
 logger = logging.getLogger(__name__)
 
@@ -11,37 +12,45 @@ def valid_classes():
     return [
         {
             "class_id": "riflery",
-            "capacity_a": 15,
-            "capacity_b": 15,
-            "capacity_c": 15,
-            "capacity_d": 15,
+            "sections": {
+                "A": 15,
+                "B": 15,
+                "C": 15,
+                "D": 15,
+            },
             "minimum_age": 12,
             "shooting_permissions_needed": True,
         },
         {
             "class_id": "drama",
-            "capacity_a": 15,
-            "capacity_b": 15,
-            "capacity_c": 15,
-            "capacity_d": 15,
+            "sections": {
+                "A": 15,
+                "B": 15,
+                "C": 15,
+                "D": 15,
+            },
             "minimum_age": None,
             "shooting_permissions_needed": False,
         },
         {
             "class_id": "five_stand",
-            "capacity_a": 0,
-            "capacity_b": 1,
-            "capacity_c": 15,
-            "capacity_d": 15,
+            "sections": {
+                "A": 0,
+                "B": 1,
+                "C": 15,
+                "D": 14,
+            },
             "minimum_age": 14,
             "shooting_permissions_needed": True,
         },
         {
             "class_id": "paintball",
-            "capacity_a": 10,
-            "capacity_b": 10,
-            "capacity_c": 10,
-            "capacity_d": 0,
+            "sections": {
+                "A": 10,
+                "B": 10,
+                "C": 10,
+                "D": 0,
+            },
             "minimum_age": 12,
             "shooting_permissions_needed": True,
         },
@@ -50,56 +59,86 @@ def valid_classes():
 
 class TestClassInitialization:
     """Tests focused on how the class is constructed from input data"""
-    
+
     def test_class_values_populated(self, valid_classes):
         """testing a class can be created with individual named arguments"""
-        
+
         class_raw = valid_classes[0]
-        
+
         class_ = Class(
-            class_id=class_raw['class_id'],
-            capacity_a=class_raw['capacity_a'],
-            capacity_b=class_raw['capacity_b'],
-            capacity_c=class_raw['capacity_c'],
-            capacity_d=class_raw['capacity_d'],
-            minimum_age=class_raw['minimum_age'],
-            shooting_permissions_needed=class_raw['shooting_permissions_needed']
+            class_id=class_raw["class_id"],
+            sections=class_raw["sections"],
+            minimum_age=class_raw["minimum_age"],
+            shooting_permissions_needed=class_raw["shooting_permissions_needed"],
         )
-    
-        assert class_.class_id == class_raw['class_id']
-        assert class_.capacity_a == class_raw['capacity_a']
-        assert class_.capacity_b == class_raw['capacity_b']
-        assert class_.capacity_c == class_raw['capacity_c']
-        assert class_.capacity_d == class_raw['capacity_d']
-        assert class_.minimum_age == class_raw['minimum_age']
-        assert class_.shooting_permissions_needed == class_raw['shooting_permissions_needed']
-        assert len(class_.a) == 0
-        assert len(class_.b) == 0
-        assert len(class_.c) == 0
-        assert len(class_.d) == 0
-        
-        
-        
-    def test_camper_object_populated(self, valid_classes):
+
+        assert class_.class_id == class_raw["class_id"]
+        assert class_.minimum_age == class_raw["minimum_age"]
+        assert (
+            class_.shooting_permissions_needed
+            == class_raw["shooting_permissions_needed"]
+        )
+
+    def test_class_object_populated(self, valid_classes):
         """Testing a class can be created with an object"""
         class_raw = valid_classes[1]
         class_ = Class(**class_raw)
 
+        assert class_.class_id == class_raw["class_id"]
+        assert class_.minimum_age == class_raw["minimum_age"]
+        assert (
+            class_.shooting_permissions_needed
+            == class_raw["shooting_permissions_needed"]
+        )
 
-        assert class_.class_id == class_raw['class_id']
-        assert class_.capacity_a == class_raw['capacity_a']
-        assert class_.capacity_b == class_raw['capacity_b']
-        assert class_.capacity_c == class_raw['capacity_c']
-        assert class_.capacity_d == class_raw['capacity_d']
-        assert class_.minimum_age == class_raw['minimum_age']
-        assert class_.shooting_permissions_needed == class_raw['shooting_permissions_needed']
-        assert len(class_.a) == 0
-        assert len(class_.b) == 0
-        assert len(class_.c) == 0
-        assert len(class_.d) == 0
-        
+
 class TestClassMethods:
     """Tests focused on how class properties/methods behave"""
+
+    def test_get_sections(self, valid_classes):
+        class_ = Class(**valid_classes[0])
+
+        rosters = class_.sections()
+
+        assert isinstance(rosters, dict)  
+        for section_id, section in rosters.items():
+            assert isinstance(section_id, str)
+            assert isinstance(section, Section) 
+
+    def test_get_available_sections(self, valid_classes):
+        class_ = Class(**valid_classes[2]) # Class Capacity for section A is 0, so it should not be available
+
+        class_sections = class_.get_available_sections()
+
+        assert isinstance(class_sections, list)
+        assert len(class_sections) == 3  # Only sections B, C, and D should be available
+
+    def test_get_section_by_id(self, valid_classes):
+        class_ = Class(**valid_classes[0])
+
+        section_id = "A"
+        section = class_.get_section_by_id(section_id)
+
+        assert isinstance(section, Section)
+        assert section.section_id == section_id
+
+
+    def test_get_available_sections_empty(self, valid_classes):
+        class_data = valid_classes[3].copy()
+        # Set all section capacities to 0
+        for section in class_data["sections"]:
+            class_data["sections"][section] = 0
+        class_ = Class(class_data)  # All sections have capacity 0
+
+        class_sections = class_.get_available_sections()
+
+        assert isinstance(class_sections, dict)
+        assert len(class_sections) == 0  # No sections should be available
+
     
-    
-    
+    def test_get_section_by_id_not_found(self, valid_classes):
+        class_ = Class(**valid_classes[0])
+
+        section_id = "Z"  # An ID that doesn't exist
+        with pytest.raises(ValueError):
+            class_.get_section_by_id(section_id)
