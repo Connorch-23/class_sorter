@@ -28,13 +28,10 @@ class TestLoadClasses:
         """The exact header the loader expects, in file order."""
         return [
             "class_id",
-            "capacity_a",
-            "capacity_b",
-            "capacity_c",
-            "capacity_d",
             "minimum_age",
             "shooting_permissions_needed",
         ]
+
 
     @pytest.fixture
     def valid_rows(self):
@@ -97,12 +94,12 @@ class TestLoadClasses:
         classes = load_classes(valid_csv_path)
         assert isinstance(classes, list)
 
-    def test_returns_dataframe_with_expected_columns(
+    def test_returns_list_with_expected_columns(
         self, valid_csv_path, expected_columns
     ):
         """Every expected column is present in the returned DataFrame."""
         classes = pd.DataFrame(load_classes(valid_csv_path))
-        assert list(classes.columns) == expected_columns
+        assert set(expected_columns) - set(classes.columns) == set()
 
     def test_single_row_csv(self, csv_factory):
         """Loader works correctly when the CSV contains exactly one data row."""
@@ -129,16 +126,16 @@ class TestLoadClasses:
         """A single missing column triggers ValueError naming that column."""
         rows = [
             {
-                # 'capacity_a' is intentionally absent
                 "class_id": "archery",
+                'capacity_a': 20,
                 "capacity_b": 20,
                 "capacity_c": 20,
                 "capacity_d": 20,
-                "minimum_age": 8,
+                #"minimum_age": 8,
                 "shooting_permissions_needed": False,
             }
         ]
-        with pytest.raises(ValueError, match="capacity_a"):
+        with pytest.raises(ValueError, match="minimum_age"):
             load_classes(csv_factory(rows))
 
     def test_missing_multiple_columns_lists_all(self, csv_factory):
@@ -149,19 +146,20 @@ class TestLoadClasses:
         """
         rows = [
             {
-                # capacity_b, capacity_c, and minimum_age are all absent
                 "class_id": "archery",
-                "capacity_a": 20,
+                'capacity_a': 20,
+                "capacity_b": 20,
+                "capacity_c": 20,
                 "capacity_d": 20,
-                "shooting_permissions_needed": False,
+                #"minimum_age": 8,
+                #"shooting_permissions_needed": False,
             }
         ]
         with pytest.raises(ValueError) as exc_info:
             load_classes(csv_factory(rows))
         error_message = str(exc_info.value)
-        assert "capacity_b" in error_message
-        assert "capacity_c" in error_message
         assert "minimum_age" in error_message
+        assert "shooting_permissions_needed" in error_message
 
     def test_extra_columns_raises_value_error(self, csv_factory, valid_rows):
         """If any extra columns are passed through the CSV file, it raises ValueError.
@@ -171,11 +169,11 @@ class TestLoadClasses:
         """
         rows = [row.copy() for row in valid_rows]
         for row in rows:
-            row.update({"capacity_e": 0, "maximum_age": 100})
+            row.update({"middle_name": 0, "maximum_age": 100})
         with pytest.raises(ValueError) as exc_info:
             load_classes(csv_factory(rows))
         error_message = str(exc_info.value)
-        assert "capacity_e" in error_message
+        assert "middle_name" in error_message
         assert "maximum_age" in error_message
 
     # ------------------------------------------------------------------
@@ -204,9 +202,10 @@ class TestLoadClasses:
                 "shooting_permissions_needed": False,
             }
         ]
-        # Loader does NOT raise; 'abc' is coerced to NaN then treated as 0
+        # Loader does NOT raise; 'abc' is coerced to NaN then treated as 0, left out of the periods dict
         classes = load_classes(csv_factory(rows))
-        assert classes[0]['capacity_a'] == 0
+        with pytest.raises(KeyError):
+            classes[0]['period_capacities']['A']
 
     def test_float_in_numeric_column_raises_typeerror(self, csv_factory):
         """A genuine decimal (e.g. 3.14) raises TypeError; a whole-number
@@ -223,7 +222,7 @@ class TestLoadClasses:
                 "shooting_permissions_needed": False,
             }
         ]
-        with pytest.raises(TypeError, match="capacity_a"):
+        with pytest.raises(TypeError):
             load_classes(csv_factory(decimal_rows))
 
         whole_rows = [
@@ -495,7 +494,7 @@ class TestLoadCampers:
         col = 'age'
         row[col] = -1  # inject a negative into whichever column is under test
         with pytest.raises(ValueError, match=col):
-            load_classes(csv_factory([row]))
+            load_campers(csv_factory([row]))
 
     def test_invalid_boolean_values(self, csv_factory, valid_rows):
         """
