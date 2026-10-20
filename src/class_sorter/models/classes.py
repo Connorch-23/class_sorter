@@ -1,9 +1,10 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
 
-from class_sorter.models.sections import Section
+from dataclasses import dataclass, field
+
 from class_sorter.models.campers import Camper
+from class_sorter.models.sections import Section
+
 
 @dataclass
 class Class:

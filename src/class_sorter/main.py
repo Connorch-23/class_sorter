@@ -1,9 +1,8 @@
 import logging
+
 from class_sorter.models.campers import Camper
 from class_sorter.models.classes import Class
-from class_sorter.services.data_loader import load_classes, load_campers
-# from controllers.sorter import sort_campers
-# from controllers.output_formatter import export_results
+from class_sorter.services.data_loader import load_campers, load_classes
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +32,7 @@ def main():
 
     except FileNotFoundError as e:
         print(f"Error: Required file not found - {e}")
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(f"Unexpected error occurred: {e}")
         
 

@@ -1,7 +1,9 @@
-import pytest
 import logging
-from class_sorter.models.sections import Section
+
+import pytest
+
 from class_sorter.models.campers import Camper
+from class_sorter.models.sections import Section
 
 logger = logging.getLogger(__name__)
 

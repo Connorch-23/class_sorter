@@ -1,8 +1,9 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import ClassVar, TYPE_CHECKING
+
 import logging
 from collections import deque
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
     from class_sorter.models.sections import Section

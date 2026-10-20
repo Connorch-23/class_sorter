@@ -1,10 +1,9 @@
-import pandas as pd
-import pytest
 import logging
 
+import pandas as pd
+import pytest
 
-from class_sorter.services.data_loader import load_classes
-from class_sorter.services.data_loader import load_campers
+from class_sorter.services.data_loader import load_campers, load_classes
 
 logger = logging.getLogger(__name__)
 

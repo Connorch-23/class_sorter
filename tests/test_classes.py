@@ -1,8 +1,12 @@
 from __future__ import annotations
-import pytest
+
 import logging
+
+import pytest
+
 from class_sorter.models.classes import Class
 from class_sorter.models.sections import Section
+
 logger = logging.getLogger(__name__)
 
 
