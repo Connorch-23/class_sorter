@@ -1,8 +1,8 @@
+from __future__ import annotations
 import pytest
 import logging
 from class_sorter.models.campers import Camper
 from class_sorter.models.sections import Section
-from class_sorter.models.classes import Class
 logger = logging.getLogger(__name__)
 
 
@@ -162,6 +162,11 @@ def valid_campers():
         },
     ]
 
+@pytest.fixture
+def valid_section():
+    """A helper function for creating a sample section"""
+    return Section(period="A", parent_class_id="riflery", capacity=10)
+
 
 class TestCamperInitialization:
     """Tests focused on how the Camper is constructed from input data"""
@@ -250,13 +255,25 @@ class TestCamperInitialization:
         
 class TestCamperMethods:
     """Tests focused on how camper properties/methods behave"""
-    def test_get_schedule(self, valid_campers):
+
+    def test_add_section_and_enrolled_sections(self, valid_campers, valid_section):
         camper = Camper(**valid_campers[0])
-        enrolled_classes = camper.get_enrolled_classes()
+        section = valid_section
+        camper.add_section(section)
         
-        # Check that the result is a dictionary
-        assert isinstance(enrolled_classes, list)
+        assert section.period in camper.enrolled_sections
+        assert section in camper.enrolled_sections.values()
         
-        # Check that all values are instances of the Class model
-        for section in enrolled_classes:
-            assert isinstance(section, Section)
+        
+    def test_remove_section(self, valid_campers, valid_section):
+        """A test to make sure a section is removed successfully"""
+        camper = Camper(**valid_campers[0])
+        section = valid_section
+        
+        camper.add_section(section)
+        
+        camper.remove_section(section)
+        
+        assert section.period not in camper.enrolled_sections
+        assert section not in camper.enrolled_sections.values()
+        assert len(camper.enrolled_sections) == 0
