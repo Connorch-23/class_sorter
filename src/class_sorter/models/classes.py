@@ -2,9 +2,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from class_sorter.models.sections import Section
-    from class_sorter.models.campers import Camper
+from class_sorter.models.sections import Section
+from class_sorter.models.campers import Camper
 
 @dataclass
 class Class:
@@ -12,13 +11,12 @@ class Class:
     Represents a course or activity that can be offered across multiple time periods.
     """
     class_id: str
-    name: str
     minimum_age: int
     # Dictionary mapping period {'A': 15, 'B': 7}
     period_capacities: dict[str, int]
     # The actual Section objects created from the capacities
     _sections: dict[str, Section] = field(default_factory=dict)
-    shooting_permissions_needed = False
+    shooting_permissions_needed: bool = False
     
 
     def __post_init__(self):
