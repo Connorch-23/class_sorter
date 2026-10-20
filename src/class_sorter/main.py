@@ -1,6 +1,6 @@
 import logging
 from class_sorter.models.campers import Camper
-from class_sorter.models.classes import Classes
+from class_sorter.models.classes import Class
 from class_sorter.services.data_loader import load_classes, load_campers
 # from controllers.sorter import sort_campers
 # from controllers.output_formatter import export_results
@@ -20,7 +20,8 @@ def main():
         campers = [Camper(**camper_data) for camper_data in campers_raw]
         print(f"Loaded {len(campers)} Camper objects")
     
-        classes = [Classes(**class_data) for class_data in classes_raw]
+        classes = [Class(**class_data) for class_data in classes_raw]
+        print(f"Loaded {len(classes)} Class objects")
 
         # Process
         # sorted_campers = sort_campers(campers, classes)
@@ -35,12 +36,6 @@ def main():
     except Exception as e:
         print(f"Unexpected error occurred: {e}")
         
-        ## TODO: Refactor test_data_loader.py for classes to adjust for new intake of period capacities
-        ## TODO: Refactor data_loader.py for classes to adjust for new intake of period capacities such that all tests pass
-        ## TODO: Create test_period.py to dictate the behavior periods        
-        ## TODO: Create a class called Period. That period has the property class and capacity. Available periods are made from the classes list.
-        ## TODO: Refactor class inputs to have a list of capacities for each period. This should either come as column1, column2, columnN or capacities= capacity;capacity;capacity where
-        ## a blank cell means 0 capacity. 
 
 
 if __name__ == "__main__":
