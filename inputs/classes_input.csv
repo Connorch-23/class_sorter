@@ -1,14 +1,14 @@
-class_id,minimum_age,shooting_permissions_needed,capacity_a,capacity_b,capacity_c,capacity_d,
-riflery,12,TRUE,15,15,15,15,
-drama,,FALSE,15,15,15,15,
-photography,,FALSE,8,8,8,8,
-fishing,,FALSE,17,17,17,17,
-kayaking,,FALSE,18,18,18,18,
-five_stand,14,TRUE,,1,15,15,
-arts and crafts,,FALSE,20,20,20,20,
-climbing,,FALSE,11,11,11,11,
-archery,,FALSE,20,20,20,20,
-horses,,FALSE,15,15,15,15,
-paintball,12,TRUE,10,10,10,,
-sports,,FALSE,14,14,14,14,
-newspaper,,FALSE,12,12,12,12,
+class_id,minimum_age,shooting_permissions_needed,capacity_a,capacity_b,capacity_c,capacity_d
+riflery,12,TRUE,15,15,15,15
+drama,,FALSE,15,15,15,15
+photography,,FALSE,8,8,8,8
+fishing,,FALSE,17,17,17,17
+kayaking,,FALSE,18,18,18,18
+five_stand,14,TRUE,,1,15,15
+arts and crafts,,FALSE,20,20,20,20
+climbing,,FALSE,11,11,11,11
+archery,,FALSE,20,20,20,20
+horses,,FALSE,15,15,15,15
+paintball,12,TRUE,10,10,10,
+sports,,FALSE,14,14,14,14
+newspaper,,FALSE,12,12,12,12
