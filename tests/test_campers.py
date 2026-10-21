@@ -259,6 +259,18 @@ class TestCamperInitialization:
         
 class TestCamperMethods:
     """Tests focused on how camper properties/methods behave"""
+    
+    
+    def test_generate_preferences(self, valid_campers):
+        """Tests that preferences are deduplicated while maintaining order"""
+        # ['riflery', 'climbing', 'paintball', 'kayaking', 'riflery', '12 stand']
+        raw_data = valid_campers[0]
+        camper = Camper(**raw_data)
+        
+        expected_order = ["riflery", "climbing", "paintball", "kayaking", "12 stand"]
+        
+        assert list(camper.preferences_stack) == expected_order
+        assert len(camper.preferences_stack) == 5
 
     def test_add_section_and_enrolled_sections(self, valid_campers, valid_section):
         camper = Camper(**valid_campers[0])
@@ -281,3 +293,43 @@ class TestCamperMethods:
         assert section.period not in camper.enrolled_sections
         assert section not in camper.enrolled_sections.values()
         assert len(camper.enrolled_sections) == 0
+        
+    def test_pop_preference(self, valid_campers):
+        """
+        Tests if pop_preference behaves like a stack by removing
+        the left most preference
+        """
+        camper = Camper(**valid_campers[0])
+        preferences = camper.preferences_stack
+        p1 = camper.pop_preference()
+        assert p1 == preferences[0]
+        assert camper.preferences_stack == preferences[1:]
+
+    def test_pop_preference_empty(self, valid_campers):
+        """Tests that popping from an empty preference stack returns None"""
+        camper = Camper(**valid_campers[0])
+        # Drain the preferences
+        while camper.pop_preference() is not None:
+            pass
+        
+        assert camper.pop_preference() is None
+        
+    def test_remove_section_not_found(self, valid_campers, valid_section):
+        """Tests that removing a non-existent period raises a ValueError"""
+        camper = Camper(**valid_campers[0])
+        # Attempt to remove a section that was never added
+        
+        with pytest.raises(ValueError, match=valid_section.period):
+            camper.remove_section(valid_section) 
+        
+
+    def test_remove_section_mismatch(self, valid_campers, valid_section):
+        """Tests that removing a section with the same period but different object raises ValueError"""
+        camper = Camper(**valid_campers[0])
+        camper.add_section(valid_section)
+        
+        # Create a different Section object with the same period
+        mismatched_section = Section(period="A", parent_class_id="different_class", capacity=5)
+        
+        with pytest.raises(ValueError, match="Section integrity error"):
+            camper.remove_section(mismatched_section)

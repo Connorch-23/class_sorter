@@ -73,8 +73,7 @@ class Camper:
     def remove_section(self, section: Section):
         """Removes a section from the camper's enrolled sections"""
         if section.period not in self._enrolled_sections:
-            logger.warning(f"Camper {self.id} attempted to remove period {section.period} which was not found.")
-            return
+            raise ValueError(f"Camper {self.id} attempted to remove period {section.period} which was not found.")
 
         if self._enrolled_sections[section.period] != section:
             raise ValueError(f"Section integrity error: Period {section.period} exists but object mismatch.")

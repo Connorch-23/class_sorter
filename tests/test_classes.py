@@ -6,6 +6,7 @@ import pytest
 
 from class_sorter.models.classes import Class
 from class_sorter.models.sections import Section
+from class_sorter.models.campers import Camper
 
 logger = logging.getLogger(__name__)
 
@@ -61,6 +62,33 @@ def valid_classes():
     ]
 
 
+@pytest.fixture
+def valid_campers():
+    return [
+        {
+            "first_name": "John",
+            "last_name": "Doe",
+            "cabin": "12",
+            "age": 11,
+            "allowed_to_shoot": True,
+        },
+        {
+            "first_name": "Jane",
+            "last_name": "Doe",
+            "cabin": "12",
+            "age": 12,
+            "allowed_to_shoot": False,
+        },
+        {
+            "first_name": "Josh",
+            "last_name": "Doe",
+            "cabin": "12",
+            "age": 12,
+            "allowed_to_shoot": True,
+        },
+    ]
+
+
 class TestClassInitialization:
     """Tests focused on how the class is constructed from input data"""
 
@@ -105,18 +133,43 @@ class TestClassMethods:
 
         rosters = class_.sections
 
-        assert isinstance(rosters, dict)  
+        assert isinstance(rosters, dict)
         for section_id, section in rosters.items():
             assert isinstance(section_id, str)
-            assert isinstance(section, Section) 
+            assert isinstance(section, Section)
 
-    # def test_get_available_sections(self, valid_classes):
-    #     class_ = Class(**valid_classes[2]) # Class Capacity for section A is 0, so it should not be available
+    def test_get_available_sections(self, valid_classes):
+        """
+        Test that sections with room left are returned and are sorted
+        from most room to least room.
+        """
 
-    #     class_sections = class_.get_available_sections()
+        class_ = Class(
+            **valid_classes[2]
+        )  # Class Capacity for section A is 0, so it should not be available
 
-    #     assert isinstance(class_sections, list)
-    #     assert len(class_sections) == 3  # Only sections B, C, and D should be available
+        class_sections = class_.get_available_sections()
+        room_left = 10000
+        for section in class_sections:
+            assert isinstance(section, Section)
+
+            capacity = section.get_remaining_capacity()
+            assert capacity > 0
+            assert capacity <= room_left
+            room_left = capacity
+            assert section.period != "A"
+
+    def test_get_available_sections_empty_list(self, valid_classes):
+        """
+        Test that None is returned if there are no remaining classes
+        """
+        class_data = valid_classes[2].copy()
+        # pretend all classes are full
+        for period in class_data["period_capacities"]:
+            class_data["period_capacities"][period] = 0
+        class_ = Class(**class_data)
+
+        assert class_.get_available_sections() == []
 
     def test_get_section(self, valid_classes):
         class_ = Class(**valid_classes[0])
@@ -127,23 +180,39 @@ class TestClassMethods:
         assert isinstance(section, Section)
         assert section.period == period
 
-
-    # def test_get_available_sections_empty(self, valid_classes):
-    #     class_data = valid_classes[3].copy()
-    #     # Set all section capacities to 0
-    #     for section in class_data["sections"]:
-    #         class_data["sections"][section] = 0
-    #     class_ = Class(class_data)  # All sections have capacity 0
-
-    #     class_sections = class_.get_available_sections()
-
-    #     assert isinstance(class_sections, dict)
-    #     assert len(class_sections) == 0  # No sections should be available
-
-    
     def test_get_section_not_found_returns_none(self, valid_classes):
         class_ = Class(**valid_classes[0])
 
         section_id = "Z"  # An ID that doesn't exist
-        
+
         assert class_.get_section(section_id) is None
+
+    def test_can_enroll_blocks_enrollment(self, valid_classes, valid_campers):
+        """
+        Test that a camper is not enrolled when they do not meet age requirements,
+        permissions requirements, or the class is full
+        """
+        class_data = valid_classes[0].copy()
+        class_data["period_capacities"] = {
+            "A": 0,
+            "B": 0,
+        }
+        class_ = Class(
+            **valid_classes[0]
+        )  # age requirement is 12, shooting sports needed
+        camper_1 = Camper(**valid_campers[0])
+        camper_2 = Camper(**valid_campers[1])
+        camper_3 = Camper(**valid_campers[2])
+        class_2 = Class(**class_data)
+
+        assert not class_.can_enroll(camper_1)
+        assert not class_.can_enroll(camper_2)
+        assert not class_2.can_enroll(camper_3)
+
+    def test_can_enroll_allows_enrollment(self, valid_classes, valid_campers):
+        """Test that can enroll returns true for an eligible camper"""
+
+        class_ = Class(**valid_classes[0])
+        camper = Camper(**valid_campers[2])
+
+        assert class_.can_enroll(camper)
