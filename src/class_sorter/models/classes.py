@@ -11,6 +11,7 @@ class Class:
     """
     Represents a course or activity that can be offered across multiple time periods.
     """
+
     class_id: str
     minimum_age: int
     # Dictionary mapping period {'A': 15, 'B': 7}
@@ -18,7 +19,6 @@ class Class:
     # The actual Section objects created from the capacities
     _sections: dict[str, Section] = field(default_factory=dict)
     shooting_permissions_needed: bool = False
-    
 
     def __post_init__(self):
         """
@@ -26,20 +26,18 @@ class Class:
         """
         for period, capacity in self.period_capacities.items():
             self._sections[period] = Section(
-                period=period,
-                parent_class_id=self.class_id,
-                capacity=capacity
+                period=period, parent_class_id=self.class_id, capacity=capacity
             )
-            
+
     @property
-    def sections(self) -> dict[Section]:
+    def sections(self) -> dict[str, Section]:
         """Returns a dictionary of all sections associated with this class"""
         return self._sections
-            
+
     def get_section(self, period: str) -> Section | None:
         """Retrieves the section for a specific period."""
         return self._sections.get(period)
-    
+
     def can_enroll(self, camper: Camper) -> bool:
         """
         Determines whether or not a camper is allowed to enroll in the class
@@ -48,26 +46,51 @@ class Class:
 
         if camper.age < self.minimum_age:
             return False
-        if self.shooting_permissions_needed:
-            return camper.allowed_to_shoot
-        return any(section.get_remaining_capacity() > 0 for section in self._sections.values())
+        if self.shooting_permissions_needed and not camper.allowed_to_shoot:
+            return False
 
+        # only count periods the camper is not already enrolled in
+        available_periods = self._sections.keys() - camper.enrolled_sections.keys()
+        return any(
+            self._sections[p].get_remaining_capacity() > 0 for p in available_periods
+        )
 
     def retrieve_optimal_section(self, camper: Camper) -> Section | None:
         """
         Determines the best section to be assigned to a camper based
-        on their existing enrolled_sections
+        on their existing enrolled_sections and eligibility for
+        the class itself. Returns None if no sections have room or
+        the camper does not meet eligibility requirements
         """
+        if self.can_enroll(camper) is False:
+            return None
         # look for periods not already filled (this might be removed for collision handling)
-        available_periods = self._sections.keys() - camper.enrolled_sections
-        
+        available_periods = self._sections.keys() - camper.enrolled_sections.keys()
+
         if not available_periods:
             return None
-        
+
         # retrieve actual sections
-        available_sections = [self._sections[p] for p in available_periods]
-        
+        available_sections = [
+            self._sections[p]
+            for p in available_periods
+            if self._sections[p].can_enroll(camper)
+        ]
+
         # sort available sections. Leaving as a sorted list for possible future implementation of return all possible sections
-        available_sections = sorted(available_sections, key=lambda s: s.get_remaining_capacity(), reverse=True)
-        
+        available_sections = sorted(
+            available_sections, key=lambda s: s.get_remaining_capacity(), reverse=True
+        )
+
         return available_sections[0]
+
+    def get_available_sections(self) -> list[Section]:
+        """
+        Retrieves sections that have still have room for
+        more campers, sorted from most to least room remaining
+        """
+        return sorted(
+            self.sections.values(),
+            key=lambda s: s.get_remaining_capacity(),
+            reverse=True,
+        )
