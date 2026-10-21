@@ -220,7 +220,7 @@ class TestCamperInitialization:
         """Checks that the preferences list is created as a deque for proper preference manipulation"""
         camper = Camper(**valid_campers[0].copy())
         
-        assert camper.preferences.popleft() == valid_campers[0]["preferences"][0]
+        assert camper.pop_preference() == valid_campers[0]["preferences"][0]
         
         
     # Edge Cases
@@ -230,8 +230,8 @@ class TestCamperInitialization:
         camper_raw = valid_campers[0]
         camper = Camper(**camper_raw)
         # If your class is designed to deduplicate:
-        assert len(camper.preferences) == 5
-        assert set(camper.preferences) == set(camper_raw["preferences"])
+        assert len(camper.preferences_stack) == 5
+        assert set(camper.preferences_stack) == set(camper_raw["preferences"])
         
     def test_empty_preferences_makes_empty_list(self, valid_campers):
         """Makes sure that empty preferences or preferences coming in as None gives an empty list"""
@@ -243,8 +243,8 @@ class TestCamperInitialization:
         
         camper1, camper2 = Camper(**row1), Camper(**row2)     
         
-        assert len(camper1.preferences) == 0
-        assert len(camper2.preferences) == 0
+        assert len(camper1.preferences_stack) == 0
+        assert len(camper2.preferences_stack) == 0
            
 
     def test_raises_error_on_missing_field(self, valid_campers):
