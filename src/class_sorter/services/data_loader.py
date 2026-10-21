@@ -68,7 +68,6 @@ def load_campers(file_path):
 
 def load_classes(file_path):
     raw_classes = pd.read_csv(file_path)
-
     # Validate records exist
     if len(raw_classes) == 0:
         raise ValueError("Classes must be populated in input file")
@@ -91,7 +90,6 @@ def load_classes(file_path):
 
     expected = set(required_columns + capacity_columns)
     actual = set(raw_classes.columns)
-
     missing = expected - actual
     extra = actual - expected
 
