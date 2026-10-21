@@ -23,6 +23,7 @@ class Camper:
     cabin: str
     age: int
     allowed_to_shoot: bool
+    _score: int = field(default=0, init=False)
     preferences: list[str] = field(default_factory=list, repr=False)
     
     # Internal state lists
@@ -32,8 +33,25 @@ class Camper:
     def __post_init__(self):
         Camper._id_counter += 1
         self.id = Camper._id_counter
+        self._score = 0
         self.generate_preferences()
-        
+    
+    @property
+    def score(self):
+        """
+        Generates a score for the camper. Matches preferences to enrolled classes. 
+        score for each preference is 1 / (n + 1) for nth preferences 0 indexed.
+        1st preference give 1.0, 2nd gives 0.5, 3rd gives 0.33, etc.
+        """
+        for section in self.enrolled_sections.values():
+            if section.parent_class_id in self.preferences:
+                rank_index = self.preferences.index(section.parent_class_id)
+                self._score += 1.0 / (rank_index + 1)
+            else:
+                # No preference match adds nothing to the score
+                self._score += 0.0
+        return self._score
+
         
     def generate_preferences(self):
         """Generates preference list from raw preferences"""
