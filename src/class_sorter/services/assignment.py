@@ -18,12 +18,10 @@ class AssignmentEngine:
 
         # Internal State
         self.rng = None
-        self.score = 0.0
-
+        
     def assign_greedy(self, seed) -> float:
-        # set score and seed at the top of the run
+        # set seed at the top of the run
         self.rng = random.Random(seed)
-        self.score = 0.0
 
         # create a shallow copy of the campers to not affect original camper order
         randomized_campers = self.campers.copy()
@@ -56,12 +54,6 @@ class AssignmentEngine:
                             max_capacity = section.get_remaining_capacity()
                             preference = section.parent_class_id
 
-                # Add a rank for scoring. If we are randomly assigning them a preference, the score should be lower than anything on the list
-                rank = (
-                    camper.preferences.index(preference)
-                    if preference in camper.preferences
-                    else len(camper.preferences) + 1
-                )
 
                 class_ = self.classes.get(preference)
 
@@ -74,18 +66,16 @@ class AssignmentEngine:
                 if section is None:
                     continue
                 if section.enroll_camper(camper):
-                    # rank 0 is 1 / (0 + 1) = 1.0, rank 1 is 1 / (1 + 1) = 0.5, rank 2 is 1 / (2 + 1) = .333
-                    self.score += 1 / (rank + 1)
                     progress = True
 
             # progress checks if we kids are still getting assigned to classes, progress is only changed on successful enrollment
             if not progress:
                 break
-        return self.score
+
+        return sum(round(c.score, 2) for c in self.campers)
 
     def reset(self):
         """Function built to reset campers and classes back to original state."""
-        self.score = 0
         for class_ in self.classes.values():
             for section in class_.sections.values():
                 for camper in section.enrolled_campers.copy():
