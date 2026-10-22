@@ -216,3 +216,82 @@ class TestClassMethods:
         camper = Camper(**valid_campers[2])
 
         assert class_.can_enroll(camper)
+
+    def test_retrieve_optimal_section_returns_highest_capacity(
+        self, valid_classes, valid_campers
+    ):
+        """
+        Test that retrieve_optimal_section returns the section with the
+        most remaining capacity among eligible sections.
+        """
+        # Class with uneven capacities: A=5, B=10, C=2
+        class_data = {
+            "class_id": "uneven",
+            "period_capacities": {"A": 5, "B": 10, "C": 2},
+            "minimum_age": 10,
+            "shooting_permissions_needed": False,
+        }
+        class_ = Class(**class_data)
+        camper = Camper(**valid_campers[2])  # Age 12, eligible
+
+        optimal = class_.retrieve_optimal_section(camper)
+        assert optimal is not None
+        assert optimal.period == "B"
+
+    def test_retrieve_optimal_section_skips_already_enrolled(
+        self, valid_classes, valid_campers
+    ):
+        """
+        Test that retrieve_optimal_section does not return a period
+        the camper is already enrolled in.
+        """
+        class_data = {
+            "class_id": "collision_test",
+            "period_capacities": {"A": 10, "B": 10},
+            "minimum_age": 10,
+            "shooting_permissions_needed": False,
+        }
+        class_ = Class(**class_data)
+        # Change class id so function will retrieve a valid section
+        class_data['class_id'] = 'second_class'
+        class_2 = Class(**class_data)
+        camper = Camper(**valid_campers[2])
+
+        # Manually enroll camper in period A
+        section_a = class_.get_section("A")
+        section_a.enroll_camper(camper)
+
+        # Even though A has capacity, B should be the only choice
+        optimal = class_2.retrieve_optimal_section(camper)
+        assert optimal is not None
+        assert optimal.period == "B"
+
+    def test_retrieve_optimal_section_returns_none_when_full(
+        self, valid_classes, valid_campers
+    ):
+        """
+        Test that retrieve_optimal_section returns None if all eligible
+        sections are at capacity.
+        """
+        class_data = {
+            "class_id": "full_class",
+            "period_capacities": {"A": 0, "B": 0},
+            "minimum_age": 10,
+            "shooting_permissions_needed": False,
+        }
+        class_ = Class(**class_data)
+        camper = Camper(**valid_campers[2])
+
+        assert class_.retrieve_optimal_section(camper) is None
+
+    def test_retrieve_optimal_section_returns_none_for_ineligible_camper(
+        self, valid_classes, valid_campers
+    ):
+        """
+        Test that retrieve_optimal_section returns None if the camper
+        fails the basic class requirements such as age or shooting permissions
+        """
+        class_ = Class(**valid_classes[0])  # min_age 12, shooting needed
+        camper = Camper(**valid_campers[0])  # age 11, no shooting
+
+        assert class_.retrieve_optimal_section(camper) is None
