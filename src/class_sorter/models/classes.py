@@ -48,6 +48,11 @@ class Class:
             return False
         if self.shooting_permissions_needed and not camper.allowed_to_shoot:
             return False
+        
+        # Camper cannot be enrolled in the same class twice
+        for section in camper.enrolled_sections.values():
+            if section.parent_class_id == self.class_id:
+                return False
 
         # only count periods the camper is not already enrolled in
         available_periods = self._sections.keys() - camper.enrolled_sections.keys()
