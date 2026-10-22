@@ -29,7 +29,7 @@ def main():
         engine = AssignmentEngine(campers, classes)
 
         scores = []
-        times_to_run = 10
+        times_to_run = 50
         for seed in range(times_to_run):
             scores.append(engine.assign_greedy(seed))
             engine.reset()
