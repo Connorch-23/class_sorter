@@ -17,7 +17,7 @@ Michael,Gilbert,12,13,TRUE,five_stand;archery;fishing;drama;drama;archery
 Ava,Gilmore,13,12,TRUE,climbing;paintball;five_stand;archery;photography;archery
 Paris,Graham,14,15,TRUE,five_stand;sports;paintball;fishing;fishing;archery
 Alice,Gwyn,4,12,TRUE,photography;arts and crafts;drama;fishing;kayaking;archery
-Amadahy,Hammond,12,13,TRUE,arts and crafts;photography;drama;newspaper;6 stand;archery
+Amadahy,Hammond,12,13,TRUE,arts and crafts;photography;drama;newspaper;five_stand;archery
 Hayden,Head,14,14,TRUE,kayaking;fishing;five_stand;archery;arts and crafts;archery
 andrew,Holland,11,12,FALSE,fishing;archery;drama;archery;climbing;archery
 Samantha,Huntley,4L,15,FALSE,kayaking;arts and crafts;kayaking;drama;archery;archery
@@ -30,7 +30,7 @@ Kate,Krasowski,13,13,TRUE,newspaper;riflery;climbing;sports;drama;archery
 Emilio,Lim,11,15,TRUE,arts and crafts;climbing;horses;paintball;photography;arts and crafts
 Zachary,Linton,12,14,FALSE,horses;arts and crafts;fishing;newspaper;fishing;arts and crafts
 Margaret,Lyda,4,14,FALSE,drama;newspaper;archery;horses;kayaking;arts and crafts
-Anna,Miller,4L,13,TRUE,paintball;five_stand;photography;climbing;7 stand;arts and crafts
+Anna,Miller,4L,13,TRUE,paintball;five_stand;photography;climbing;sports;arts and crafts
 Elsa,Mitchell,14,14,TRUE,climbing;five_stand;kayaking;newspaper;arts and crafts;arts and crafts
 Avery,Morris,4,12,TRUE,five_stand;photography;sports;kayaking;climbing;arts and crafts
 Cameron,Morris,14,12,FALSE,fishing;photography;arts and crafts;drama;archery;arts and crafts
@@ -43,7 +43,7 @@ Kaydance,Owens,13,14,TRUE,climbing;sports;archery;five_stand;drama;arts and craf
 Emily,Pappas,4L,13,TRUE,drama;sports;arts and crafts;five_stand;photography;arts and crafts
 Joey,Pardini,12,14,TRUE,riflery;photography;drama;fishing;fishing;climbing
 Arisha',Parker,13,13,TRUE,sports;newspaper;riflery;fishing;kayaking;climbing
-Arav,Patel,12,14,TRUE,climbing;fishing;horses;newspaper;8 stand;climbing
+Arav,Patel,12,14,TRUE,climbing;fishing;horses;newspaper;five_stand;climbing
 Jamie,Patton,4,13,TRUE,paintball;climbing;riflery;horses;arts and crafts;climbing
 Nina,Pearson,4L,13,TRUE,riflery;archery;drama;kayaking;climbing;climbing
 Julia,Piercy,14,13,TRUE,photography;archery;drama;kayaking;archery;climbing
@@ -56,7 +56,7 @@ Logan,Ramsey,12,15,TRUE,drama;sports;newspaper;horses;drama;climbing
 Juliana,Reali,4,14,TRUE,archery;horses;riflery;drama;photography;climbing
 Antonia,Reali,14,15,TRUE,riflery;paintball;newspaper;kayaking;fishing;climbing
 Charles,Richards,11,13,TRUE,riflery;drama;horses;paintball;kayaking;drama
-Isaiah,Roberts,11,15,TRUE,climbing;archery;kayaking;sports;9 stand;drama
+Isaiah,Roberts,11,15,TRUE,climbing;archery;kayaking;sports;five_stand;drama
 Sydney,Sanders,4,14,TRUE,paintball;five_stand;riflery;drama;arts and crafts;drama
 Bella,Santos,13,15,TRUE,arts and crafts;five_stand;horses;sports;climbing;drama
 Dani,Schillmoller,13,15,TRUE,fishing;kayaking;riflery;sports;archery;drama
@@ -69,7 +69,7 @@ Elizabeth Jane,Tucker,4L,15,TRUE,paintball;riflery;sports;fishing;drama;drama
 Abigail,Wagner,14,13,TRUE,sports;kayaking;newspaper;five_stand;photography;drama
 Braden,Wigfall,12,12,TRUE,archery;arts and crafts;kayaking;five_stand;fishing;drama
 Jeffrey,Woodlief,11,14,TRUE,kayaking;newspaper;archery;photography;kayaking;drama
-Tyler,Woodlief,12,14,TRUE,newspaper;photography;arts and crafts;paintball;10 stand;fishing
+Tyler,Woodlief,12,14,TRUE,newspaper;photography;arts and crafts;paintball;1five_stand;fishing
 Nicholas (Nico),Yohannes,12,15,TRUE,horses;climbing;drama;archery;arts and crafts;fishing
 Kaelan,Young,11,12,TRUE,arts and crafts;drama;archery;five_stand;climbing;fishing
 Isabel,Young,13,15,TRUE,newspaper;five_stand;arts and crafts;fishing;archery;fishing
@@ -82,7 +82,7 @@ Julia,Hunter,2,15,TRUE,kayaking;paintball;riflery;arts and crafts;drama;fishing
 Kimberly,Moore,2,14,TRUE,kayaking;horses;photography;riflery;photography;fishing
 Ava,Needham,2,12,TRUE,sports;archery;climbing;arts and crafts;fishing;fishing
 Sarah,Pardue,2,12,TRUE,five_stand;sports;fishing;arts and crafts;kayaking;fishing
-Avery,Schillmoller,2,13,TRUE,paintball;five_stand;sports;horses;11 stand;fishing
+Avery,Schillmoller,2,13,TRUE,paintball;five_stand;sports;horses;five_stand;fishing
 Ibryana,Sloan,2,15,TRUE,archery;fishing;five_stand;paintball;arts and crafts;horses
 Dixon,Widmayer,2,15,TRUE,fishing;arts and crafts;horses;newspaper;climbing;horses
 Keira,Bach,3,15,FALSE,photography;horses;arts and crafts;climbing;archery;horses
@@ -108,7 +108,7 @@ Jomei,Hammond,7,15,FALSE,fishing;kayaking;horses;arts and crafts;drama;kayaking
 Carter,Haynes,7,13,TRUE,sports;photography;riflery;fishing;photography;kayaking
 Max,Hill,7,12,TRUE,drama;riflery;climbing;archery;fishing;kayaking
 Rogelio Jr,Jarquins,7,15,TRUE,arts and crafts;drama;riflery;drama;kayaking;kayaking
-Aidan,Morris,7,13,TRUE,photography;kayaking;archery;paintball;13 stand;kayaking
+Aidan,Morris,7,13,TRUE,photography;kayaking;archery;paintball;five_stand;kayaking
 Anthony,Pizzarro,7,14,TRUE,fishing;horses;sports;fishing;arts and crafts;kayaking
 John,Scott,7,14,TRUE,kayaking;horses;paintball;five_stand;climbing;kayaking
 Ashton,Blevins,8,13,FALSE,newspaper;drama;arts and crafts;horses;archery;newspaper
@@ -121,7 +121,7 @@ Colten,Edwards,8,12,FALSE,paintball;fishing;kayaking;kayaking;drama;newspaper
 Warren,Itenson,8,14,TRUE,fishing;riflery;paintball;horses;photography;newspaper
 Cameron,Jakubczak,8,15,TRUE,five_stand;paintball;kayaking;drama;fishing;newspaper
 Robert,Lyda Jr,8,12,TRUE,climbing;arts and crafts;photography;riflery;kayaking;newspaper
-Luke,Nevius,8,15,TRUE,five_stand;riflery;horses;photography;14 stand;newspaper
+Luke,Nevius,8,15,TRUE,five_stand;riflery;horses;photography;sports;newspaper
 Sahil,Patel,8,15,TRUE,photography;newspaper;arts and crafts;archery;arts and crafts;newspaper
 Davis,Post,8,13,FALSE,climbing;archery;archery;drama;climbing;newspaper
 Silas,Richardson,8,12,TRUE,sports;paintball;arts and crafts;riflery;archery;paintball
@@ -147,7 +147,7 @@ Kenneth,Barnes,10,12,TRUE,paintball;five_stand;riflery;horses;drama;photography
 Conrad,Bush,10,13,FALSE,horses;arts and crafts;drama;newspaper;photography;photography
 Shane,Davis,10,14,TRUE,arts and crafts;drama;five_stand;kayaking;fishing;photography
 Steven,Kramp,10,15,TRUE,riflery;five_stand;archery;climbing;kayaking;photography
-Hank,Robinson,10,12,TRUE,climbing;riflery;kayaking;archery;16 stand;photography
+Hank,Robinson,10,12,TRUE,climbing;riflery;kayaking;archery;five_stand;photography
 Vikas,Sarvasya,10,13,TRUE,horses;fishing;kayaking;newspaper;arts and crafts;photography
 Lucas,Shelton,10,14,TRUE,kayaking;fishing;photography;five_stand;climbing;photography
 Isaiah,Thompson,10,13,TRUE,riflery;archery;drama;riflery;archery;photography
@@ -160,7 +160,7 @@ Scarlett,Barnes,2L,13,FALSE,fishing;archery;climbing;fishing;drama;riflery
 Caroline,Erwin,2L,12,FALSE,drama;archery;sports;climbing;photography;riflery
 Amelia,Hill,2L,15,FALSE,kayaking;newspaper;arts and crafts;horses;fishing;riflery
 Kelcie,Kitson,2L,12,FALSE,arts and crafts;horses;archery;sports;kayaking;riflery
-Aislynn,Maguire,2L,15,FALSE,photography;sports;arts and crafts;newspaper;17 stand;riflery
+Aislynn,Maguire,2L,15,FALSE,photography;sports;arts and crafts;newspaper;five_stand;riflery
 Arianne,Monroe,2L,12,FALSE,drama;kayaking;horses;fishing;arts and crafts;riflery
 Nicola,Mulcahy,2L,13,FALSE,archery;riflery;kayaking;arts and crafts;climbing;riflery
 Zayda,Patterson,2L,13,FALSE,newspaper;archery;kayaking;climbing;archery;riflery
@@ -173,7 +173,7 @@ Hannah,Clarke,3L,12,TRUE,drama;newspaper;archery;arts and crafts;drama;sports
 Laila,Goldberg,3L,12,TRUE,sports;archery;photography;drama;photography;sports
 Leah,Heidepriem,3L,15,TRUE,archery;five_stand;paintball;kayaking;fishing;sports
 Ashley,Kelley,3L,14,TRUE,archery;horses;five_stand;riflery;kayaking;sports
-Erin,Locke,3L,14,TRUE,five_stand;arts and crafts;kayaking;fishing;18 stand;sports
+Erin,Locke,3L,14,TRUE,five_stand;arts and crafts;kayaking;fishing;photography;sports
 Makena,Moore,3L,12,TRUE,archery;horses;sports;arts and crafts;arts and crafts;sports
 Addison,Powell,3L,14,TRUE,horses;newspaper;archery;climbing;climbing;sports
 Christine,Sullivan,3L,13,TRUE,sports;paintball;newspaper;riflery;archery;sports
