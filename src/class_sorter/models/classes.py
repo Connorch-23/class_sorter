@@ -13,7 +13,7 @@ class Class:
     """
 
     class_id: str
-    minimum_age: int
+    minimum_age: int | None
     # Dictionary mapping period {'A': 15, 'B': 7}
     period_capacities: dict[str, int]
     # The actual Section objects created from the capacities
